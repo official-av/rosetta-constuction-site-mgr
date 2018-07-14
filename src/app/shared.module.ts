@@ -3,11 +3,13 @@ import {MaterialModule} from './material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {NavbarComponent} from './shared-ui/navbar/navbar.component';
 import {SidenavComponent} from './shared-ui/sidenav/sidenav.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    RouterModule
   ],
   exports: [
     MaterialModule,

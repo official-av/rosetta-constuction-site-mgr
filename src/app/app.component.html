@@ -1,11 +1,11 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav mode="push" position="start">
-    <app-sidenav></app-sidenav>
+    <app-sidenav (sidenavClose)="sidenav.close()"></app-sidenav>
   </mat-sidenav>
   <mat-sidenav-content>
     <app-navbar (sidenavToggled)="sidenav.toggle()"></app-navbar>
     <div class="container-custom">
-      <app-welcome></app-welcome>
+      <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
