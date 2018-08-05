@@ -1,0 +1,20 @@
+<div class="content">
+  <h5>Daily Report</h5>
+  <mat-card fxLayoutGap="10px">
+    <div class="activity" *ngIf="0==1;else noActivity" fxFlex>
+      <ng-container *ngFor="let activity of activities">
+        <mat-card>
+          <mat-card-title>{{activity.name}}</mat-card-title>
+          <mat-card-content>{{activity.description}}</mat-card-content>
+        </mat-card>
+      </ng-container>
+    </div>
+    <ng-template #noActivity>
+      <span fxFlex>No Activity today</span>
+    </ng-template>
+    <button mat-mini-fab fxFlexAlign="end">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-card>
+</div>
+
