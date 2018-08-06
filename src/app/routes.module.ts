@@ -5,6 +5,7 @@ import {DashboardComponent} from './core/dashboard/dashboard.component';
 import {AssetComponent} from './core/asset/asset.component';
 import {ReportComponent} from './core/report/report.component';
 import {LaborComponent} from './core/labor/labor.component';
+import {LaborDetailsComponent} from './core/labor/labor-details/labor-details.component';
 
 const routes: Routes = [
   {path: '', component: WelcomeComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'asset', component: AssetComponent},
   {path: 'report', component: ReportComponent},
   {path: 'labor', component: LaborComponent},
+  {path: 'laborEdit', component: LaborDetailsComponent},
 ];
 
 @NgModule({

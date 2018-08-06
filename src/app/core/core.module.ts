@@ -12,9 +12,10 @@ import {LaborComponent} from './labor/labor.component';
 import {LaborDetailsComponent} from './labor/labor-details/labor-details.component';
 import {CoreService} from './core.service';
 import {HttpClientModule} from '@angular/common/http';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
-  imports: [SharedModule, RouterModule, CommonModule, HttpClientModule],
+  imports: [SharedModule, RouterModule, CommonModule, HttpClientModule, ReactiveFormsModule],
   exports: [WelcomeComponent],
   declarations: [
     WelcomeComponent,

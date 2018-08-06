@@ -34,7 +34,6 @@ export class LaborComponent implements OnInit {
     /*this.labors = this.temp;*/
     this.coreService.fetchLabor()
       .then((result: Array<Labor>) => this.labors = result)
-      .then(console.log(this.labors))
       .catch(error => console.log(error));
   }
 

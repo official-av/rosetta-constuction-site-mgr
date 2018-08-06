@@ -1,0 +1,21 @@
+<div class="content">
+  <!--Labor-->
+  <h5>{{mode}} Labor</h5>
+  <mat-card class="resource">
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit()" [formGroup]="laborForm" *ngIf="labor" fxLayout="column" fxLayoutAlign="center">
+        <mat-form-field>
+          <input matInput formControlName="type" placeholder="Name">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="rate" placeholder="Rate">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="number" placeholder="Number">
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary">Done</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
