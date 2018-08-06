@@ -1,8 +1,11 @@
 export class Site {
-  site_id: number;
+  id: number;
   admin_id: number;
-  user_name: string;
-  site_mgr_name: string;
+  name: string;
+  email: string;
   location: string;
+  /*
+  site_mgr_name: string;
   site_name: string;
+  */
 }

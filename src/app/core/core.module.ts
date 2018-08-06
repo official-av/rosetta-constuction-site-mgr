@@ -7,13 +7,25 @@ import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {ReportComponent} from './report/report.component';
 import {ArrayFilterPipe} from './pipes/array-filter.pipe';
-import { AssetItemComponent } from './asset/asset-item/asset-item.component';
-import { AssetDetailsComponent } from './asset/asset-details/asset-details.component';
+import {AssetDetailsComponent} from './asset/asset-details/asset-details.component';
+import {LaborComponent} from './labor/labor.component';
+import {LaborDetailsComponent} from './labor/labor-details/labor-details.component';
+import {CoreService} from './core.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
-  imports: [SharedModule, RouterModule, CommonModule],
+  imports: [SharedModule, RouterModule, CommonModule, HttpClientModule],
   exports: [WelcomeComponent],
-  declarations: [WelcomeComponent, DashboardComponent, AssetComponent, ReportComponent, ArrayFilterPipe, AssetItemComponent, AssetDetailsComponent]
+  declarations: [
+    WelcomeComponent,
+    DashboardComponent,
+    AssetComponent,
+    ReportComponent,
+    ArrayFilterPipe,
+    AssetDetailsComponent,
+    LaborComponent,
+    LaborDetailsComponent],
+  providers: [CoreService]
 })
 
 export class CoreModule {
