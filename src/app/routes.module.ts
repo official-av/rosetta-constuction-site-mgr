@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'asset', component: AssetComponent},
   {path: 'report', component: ReportComponent},
   {path: 'labor', component: LaborComponent},
-  {path: 'laborEdit', component: LaborDetailsComponent},
+  {path: 'labordetails', component: LaborDetailsComponent}
 ];
 
 @NgModule({

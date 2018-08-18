@@ -7,7 +7,14 @@
       <mat-card *ngFor="let labor of labors">
         <div class="layer" fxLayoutGap="10px">
           <span fxFlex>{{labor.type}}</span>
-          <mat-icon fxFlexAlign="end">edit</mat-icon>
+          <a role="button" fragment="edit"
+             (click)="deleteLabor(labor)">
+            <mat-icon fxFlexAlign="end">delete</mat-icon>
+          </a>
+          <a role="button" routerLink="../labordetails" fragment="edit"
+             (click)="coreService.current_labor.next(labor)">
+            <mat-icon fxFlexAlign="end">edit</mat-icon>
+          </a>
         </div>
         <div class="layer" fxLayoutGap="10px">
           <span fxFlex>No. {{labor.number}}</span>
@@ -18,7 +25,7 @@
     <ng-template #noResource>
       <mat-card><span fxFlex>No Labor available</span></mat-card>
     </ng-template>
-    <button mat-mini-fab>
+    <button mat-mini-fab routerLink="../labordetails" fragment="add">
       <mat-icon>add</mat-icon>
     </button>
   </div>

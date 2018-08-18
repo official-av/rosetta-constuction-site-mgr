@@ -2,10 +2,12 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Labor} from './models/labor.model';
 import {environment} from '../../environments/environment';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable()
 export class CoreService {
   site_id = 1;
+  current_labor = new BehaviorSubject(new Labor());
   httpOptions = {
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin': '*'
