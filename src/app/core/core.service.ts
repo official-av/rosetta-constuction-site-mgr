@@ -53,6 +53,7 @@ export class CoreService {
         + '&id=' + labor.id
         + '&labor_type=' + labor.type
         + '&wage_per_person=' + labor.rate
+        + '&number=' + labor.number
         , this.httpOptions)
         .subscribe((result: any) => {
           if (result.status_code === 1) {
