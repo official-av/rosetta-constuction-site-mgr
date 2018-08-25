@@ -2,8 +2,8 @@
   <!--TODO: add routes for edit and add-->
   <!--Labor-->
   <h5>Labor</h5>
-  <div class="resource">
-    <ng-container *ngIf="labors&&labors.length>0;else noResource">
+  <div fxLayout="column">
+    <div *ngIf="labors&&labors.length>0;else noResource">
       <mat-card *ngFor="let labor of labors">
         <div class="layer" fxLayoutGap="10px">
           <span fxFlex>{{labor.type}}</span>
@@ -21,12 +21,14 @@
           <span fxFlexAlign="end">Hourly Rate {{labor.rate}}</span>
         </div>
       </mat-card>
-    </ng-container>
+    </div>
     <ng-template #noResource>
       <mat-card><span fxFlex>No Labor available</span></mat-card>
     </ng-template>
-    <button mat-mini-fab routerLink="../labordetails" fragment="add">
-      <mat-icon>add</mat-icon>
-    </button>
+    <div fxFlex fxFlexAlign="end">
+      <button mat-mini-fab routerLink="../labordetails" fragment="add">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
   </div>
 </div>

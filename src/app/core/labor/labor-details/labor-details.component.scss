@@ -1,8 +1,12 @@
 @import "../../../variables";
 
 .content {
-  button {
+  .custom-btn {
+    color: white;
     background-color: $primary;
+  }
+  .back-btn {
+    margin-bottom: 10px;
   }
   padding-top: 30px;
   h5 {

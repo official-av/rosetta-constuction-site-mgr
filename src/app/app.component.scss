@@ -6,7 +6,13 @@ mat-sidenav-container {
   .mat-sidenav-content {
     .container-custom {
       height: calc(100vh - 64px);
-      background-color: #eeeeee;
+      /*
+            background-color: #eeeeee;*/
     }
+
+    .def-gap {
+      padding: 0 80px;
+    }
+
   }
 }

@@ -1,8 +1,12 @@
 <mat-toolbar>
-  <div fxFlex fxLayoutAlign="start">
+  <div fxFlex fxHide.gt-sm fxLayoutAlign="start">
     <button mat-icon-button (click)="toggleSidenav()">
       <mat-icon>menu</mat-icon>
     </button>
   </div>
-  <span>SiteMgr</span>
+  <span fxFlex.gt-sm fxLayoutAlign.lt-md="end">SiteMgr</span>
+  <div fxHide.lt-md fxLayoutGap="20px">
+    <span><a routerLink="">Home</a></span>
+    <span><a routerLink="labor">Labor</a></span>
+  </div>
 </mat-toolbar>

@@ -1,6 +1,11 @@
 <div class="content">
   <!--Labor-->
-  <h5>{{mode | titlecase}} Labor</h5>
+  <div fxLayoutGap="10px">
+    <h5 fxFlex>{{mode | titlecase}} Labor</h5>
+    <button class="back-btn" fxFlexAlign="end" mat-icon-button (click)="cancel()">
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+  </div>
   <mat-card class="resource">
     <mat-card-content>
       <form (ngSubmit)="onSubmit()" [formGroup]="laborForm" *ngIf="labor" fxLayout="column" fxLayoutAlign="center">
@@ -13,7 +18,9 @@
         <mat-form-field>
           <input matInput formControlName="number" placeholder="Number">
         </mat-form-field>
-        <button type="submit" mat-raised-button color="primary" [disabled]="!laborForm.valid">Done</button>
+        <button type="submit" mat-raised-button [ngClass]="{'custom-btn':laborForm.valid}"
+                [disabled]="!laborForm.valid">Done
+        </button>
       </form>
     </mat-card-content>
   </mat-card>
