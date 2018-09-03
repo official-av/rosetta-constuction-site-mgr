@@ -13,6 +13,10 @@ import {LaborDetailsComponent} from './labor/labor-details/labor-details.compone
 import {CoreService} from './core.service';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MachineryComponent} from './machinery/machinery.component';
+import {MachineryDetailsComponent} from './machinery/machinery-details/machinery-details.component';
+import {MaterialComponent} from './material/material.component';
+import {MaterialDetailsComponent} from './material/material-details/material-details.component';
 
 @NgModule({
   imports: [SharedModule, RouterModule, CommonModule, HttpClientModule, ReactiveFormsModule],
@@ -25,7 +29,11 @@ import {ReactiveFormsModule} from '@angular/forms';
     ArrayFilterPipe,
     AssetDetailsComponent,
     LaborComponent,
-    LaborDetailsComponent],
+    LaborDetailsComponent,
+    MachineryComponent,
+    MachineryDetailsComponent,
+    MaterialComponent,
+    MaterialDetailsComponent],
   providers: [CoreService]
 })
 

@@ -11,19 +11,11 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./labor-details.component.scss']
 })
 export class LaborDetailsComponent implements OnInit, OnDestroy {
-  mode = 'add';
+  mode: string;
   /*TODO: add field validations*/
   subs: Subscription;
-  labor: Labor = {
-    'site_id': 1,
-    'id': 6,
-    'type': 'Driver',
-    'rate': 400,
-    'receipt': null,
-    'date': new Date('2018-08-05'),
-    'number': 1
-  };
   laborForm: FormGroup;
+  labor: Labor;
 
   constructor(private coreService: CoreService,
               private router: Router,

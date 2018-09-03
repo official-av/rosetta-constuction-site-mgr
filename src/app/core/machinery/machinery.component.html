@@ -1,0 +1,33 @@
+<div class="content">
+  <!--Machinery-->
+  <h5>Machinery</h5>
+  <div fxLayout="column">
+    <div *ngIf="machines&&machines.length>0;else noResource">
+      <mat-card *ngFor="let machine of machines">
+        <div class="layer" fxLayoutGap="10px">
+          <span fxFlex>{{machine.type}}</span>
+          <a role="button" fragment="edit"
+             (click)="deleteMachinery(machine)">
+            <mat-icon fxFlexAlign="end">delete</mat-icon>
+          </a>
+          <a role="button" routerLink="../machinerydetails" fragment="edit"
+             (click)="coreService.current_machine.next(machine)">
+            <mat-icon fxFlexAlign="end">edit</mat-icon>
+          </a>
+        </div>
+        <div class="layer" fxLayoutGap="10px">
+          <span fxFlex>Available from {{machine.start_date}} till {{machine.end_date}}}</span>
+          <span fxFlexAlign="end">Cost {{machine.cost}}</span>
+        </div>
+      </mat-card>
+    </div>
+    <ng-template #noResource>
+      <mat-card><span fxFlex>No Machinery available</span></mat-card>
+    </ng-template>
+    <div fxFlex fxFlexAlign="end">
+      <button mat-mini-fab routerLink="../machinerydetails" fragment="add">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

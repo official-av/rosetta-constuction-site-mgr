@@ -1,0 +1,28 @@
+@import "../../variables";
+
+.content {
+  button {
+    margin: 10px 20px;
+    background-color: $primary;
+  }
+  padding-top: 30px;
+  h5 {
+    padding: 10px 20px
+  }
+  mat-card {
+    .icon {
+      padding-top: 8px;
+    }
+    span {
+      padding-top: 10px;
+    }
+    padding: 10px;
+    margin: 10px 20px;
+  }
+}
+
+.layer {
+  span {
+    font-size: 16px;
+  }
+}

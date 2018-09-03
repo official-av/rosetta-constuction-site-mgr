@@ -27,6 +27,16 @@
     <mat-icon>person</mat-icon>
     <span class="nav-caption">Labor</span>
   </a>
+  <a mat-list-item routerLink="machinery" (click)="closeSidenav()" [routerLinkActive]="'active'"
+     [routerLinkActiveOptions]="{'exact':'true'}">
+    <mat-icon>person</mat-icon>
+    <span class="nav-caption">Machinery</span>
+  </a>
+  <a mat-list-item routerLink="materials" (click)="closeSidenav()" [routerLinkActive]="'active'"
+     [routerLinkActiveOptions]="{'exact':'true'}">
+    <mat-icon>person</mat-icon>
+    <span class="nav-caption">Materials</span>
+  </a>
   <!--<a *ngIf="authService.isAuthenticated()" mat-list-item (click)="closeSidenav();authService.logout()">
     <mat-icon>visibility_off</mat-icon>
     <span class="nav-caption">Logout</span></a>-->

@@ -3,11 +3,15 @@ import {Injectable} from '@angular/core';
 import {Labor} from './models/labor.model';
 import {environment} from '../../environments/environment';
 import {BehaviorSubject} from 'rxjs';
+import {Machinery} from './models/machinery.model';
+import {Material} from './models/material.model';
 
 @Injectable()
 export class CoreService {
   site_id = 1;
   current_labor = new BehaviorSubject(new Labor());
+  current_machine = new BehaviorSubject(new Machinery());
+  current_material = new BehaviorSubject(new Material());
   httpOptions = {
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin': '*'
@@ -67,6 +71,135 @@ export class CoreService {
     return new Promise((resolve, reject) => {
       this.http.get(environment.api_url + '/delete-labor'
         + '?id=' + labor.id
+        + '&site_id=' + this.site_id
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            resolve('success');
+          }
+        }, error => reject(error));
+    });
+  }
+
+  /*Machinery Calls*/
+  fetchMachinery(): Promise<Array<Machinery>> {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url + '/get-machinery?site_id=' + this.site_id
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            resolve(result.machinery_info);
+          }
+        }, error => reject(error));
+    });
+  }
+
+  addMachinery(mc: Machinery) {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url
+        + '/insert-machinery?site_id=' + this.site_id
+        + '&cost=' + mc.cost
+        + '&start_date=' + mc.start_date
+        + '&end_date=' + mc.end_date
+        + '&comments=' + mc.comments
+        + '&images=' + mc.images
+        + '&type=' + mc.type
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            resolve('success');
+          }
+        }, error => reject(error));
+    });
+  }
+
+  editMachinery(mc: Machinery) {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url
+        + '/edit-machinery?site_id=' + this.site_id
+        + '&id=' + mc.id
+        + '&cost=' + mc.cost
+        + '&start_date=' + mc.start_date
+        + '&end_date=' + mc.end_date
+        + '&comments=' + mc.comments
+        + '&images=' + mc.images
+        + '&type=' + mc.type
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            resolve('success');
+          }
+        }, error => reject(error));
+    });
+  }
+
+  deleteMachinery(mc: Machinery) {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url + '/delete-machinery'
+        + '?id=' + mc.id
+        + '&site_id=' + this.site_id
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            resolve('success');
+          }
+        }, error => reject(error));
+    });
+  }
+
+  /*Material Calls*/
+  fetchMaterials(): Promise<Array<Material>> {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url + '/get-material?site_id=' + this.site_id
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            resolve(result.material_info);
+          }
+        }, error => reject(error));
+    });
+  }
+
+  addMaterials(mat: Material) {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url
+        + '/insert-material?site_id=' + this.site_id
+        + '&cost=' + mat.cost
+        + '&quantity=' + mat.quantity
+        + '&consumed=' + mat.consumed
+        + '&images=' + mat.images
+        + '&type=' + mat.type
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            resolve('success');
+          }
+        }, error => reject(error));
+    });
+  }
+
+  editMaterials(mat: Material) {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url
+        + '/edit-material?site_id=' + this.site_id
+        + '&cost=' + mat.cost
+        + '&quantity=' + mat.quantity
+        + '&consumed=' + mat.consumed
+        + '&images=' + mat.images
+        + '&type=' + mat.type
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            resolve('success');
+          }
+        }, error => reject(error));
+    });
+  }
+
+  deleteMaterial(mat: Material) {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url + '/delete-material'
+        + '?id=' + mat.id
         + '&site_id=' + this.site_id
         , this.httpOptions)
         .subscribe((result: any) => {

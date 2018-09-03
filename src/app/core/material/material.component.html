@@ -1,0 +1,35 @@
+<div class="content">
+  <!--Materials-->
+  <h5>Materials</h5>
+  <div fxLayout="column">
+    <div *ngIf="materials&&materials.length>0;else noResource">
+      <mat-card *ngFor="let material of materials">
+        <div class="layer" fxLayoutGap="10px">
+          <span fxFlex>{{material.type}}</span>
+          <a role="button" fragment="edit"
+             (click)="deleteMaterial(material)">
+            <mat-icon fxFlexAlign="end">delete</mat-icon>
+          </a>
+          <a role="button" routerLink="../materialdetails" fragment="edit"
+             (click)="coreService.current_material.next(material)">
+            <mat-icon fxFlexAlign="end">edit</mat-icon>
+          </a>
+        </div>
+        <div class="layer" fxLayoutGap="10px">
+          <span fxFlex>Total Quantity: {{material.quantity}}</span>
+          <span fxFlex>Quantity Consumed: {{material.consumed}}</span>
+          <span fxFlexAlign="end">Cost {{material.cost}}</span>
+        </div>
+        <!-- TODO : Add images component-->
+      </mat-card>
+    </div>
+    <ng-template #noResource>
+      <mat-card><span fxFlex>No Materials available</span></mat-card>
+    </ng-template>
+    <div fxFlex fxFlexAlign="end">
+      <button mat-mini-fab routerLink="../materialdetails" fragment="add">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
