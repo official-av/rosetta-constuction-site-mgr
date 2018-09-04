@@ -17,6 +17,8 @@ import {MachineryComponent} from './machinery/machinery.component';
 import {MachineryDetailsComponent} from './machinery/machinery-details/machinery-details.component';
 import {MaterialComponent} from './material/material.component';
 import {MaterialDetailsComponent} from './material/material-details/material-details.component';
+import { ScheduleComponent } from './schedule/schedule.component';
+import { ScheduleDetailsComponent } from './schedule/schedule-details/schedule-details.component';
 
 @NgModule({
   imports: [SharedModule, RouterModule, CommonModule, HttpClientModule, ReactiveFormsModule],
@@ -33,7 +35,9 @@ import {MaterialDetailsComponent} from './material/material-details/material-det
     MachineryComponent,
     MachineryDetailsComponent,
     MaterialComponent,
-    MaterialDetailsComponent],
+    MaterialDetailsComponent,
+    ScheduleComponent,
+    ScheduleDetailsComponent],
   providers: [CoreService]
 })
 

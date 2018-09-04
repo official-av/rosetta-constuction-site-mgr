@@ -5,6 +5,7 @@ import {environment} from '../../environments/environment';
 import {BehaviorSubject} from 'rxjs';
 import {Machinery} from './models/machinery.model';
 import {Material} from './models/material.model';
+import {Schedule} from './models/schedule.model';
 
 @Injectable()
 export class CoreService {
@@ -12,6 +13,7 @@ export class CoreService {
   current_labor = new BehaviorSubject(new Labor());
   current_machine = new BehaviorSubject(new Machinery());
   current_material = new BehaviorSubject(new Material());
+  current_schedule = new BehaviorSubject(new Schedule());
   httpOptions = {
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin': '*'
@@ -137,6 +139,73 @@ export class CoreService {
     return new Promise((resolve, reject) => {
       this.http.get(environment.api_url + '/delete-machinery'
         + '?id=' + mc.id
+        + '&site_id=' + this.site_id
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            resolve('success');
+          }
+        }, error => reject(error));
+    });
+  }
+
+  /*Schedule Calls*/
+  fetchSchedules(): Promise<Array<Schedule>> {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url + '/get-schedule?site_id=' + this.site_id
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            resolve(result.schedule_info);
+          }
+        }, error => reject(error));
+    });
+  }
+
+  addSchedules(sch: Schedule) {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url
+        + '/insert-schedule?site_id=' + this.site_id
+        + '&percentage_complted=' + sch.percentage_completed
+        + '&units_completed=' + sch.units_completed
+        + '&date=' + sch.date
+        + '&estimated_completion_date=' + sch.estimated_completion_date
+        + '&images=' + sch.images
+        + '&task=' + sch.task
+        + '&comments=' + sch.comments
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            resolve('success');
+          }
+        }, error => reject(error));
+    });
+  }
+
+  editSchedule(sch: Schedule) {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url
+        + '/edit-schedule?site_id=' + this.site_id
+        + '&percentage_complted=' + sch.percentage_completed
+        + '&units_completed=' + sch.units_completed
+        + '&date=' + sch.date
+        + '&estimated_completion_date=' + sch.estimated_completion_date
+        + '&images=' + sch.images
+        + '&task=' + sch.task
+        + '&comments=' + sch.comments
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            resolve('success');
+          }
+        }, error => reject(error));
+    });
+  }
+
+  deleteSchedule(sch: Schedule) {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url + '/delete-schedule'
+        + '?id=' + sch.id
         + '&site_id=' + this.site_id
         , this.httpOptions)
         .subscribe((result: any) => {

@@ -10,6 +10,8 @@ import {MachineryComponent} from './core/machinery/machinery.component';
 import {MachineryDetailsComponent} from './core/machinery/machinery-details/machinery-details.component';
 import {MaterialComponent} from './core/material/material.component';
 import {MaterialDetailsComponent} from './core/material/material-details/material-details.component';
+import {ScheduleComponent} from './core/schedule/schedule.component';
+import {ScheduleDetailsComponent} from './core/schedule/schedule-details/schedule-details.component';
 
 const routes: Routes = [
   {path: '', component: WelcomeComponent},
@@ -21,7 +23,9 @@ const routes: Routes = [
   {path: 'machinery', component: MachineryComponent},
   {path: 'machinerydetails', component: MachineryDetailsComponent},
   {path: 'materials', component: MaterialComponent},
-  {path: 'materialdetails', component: MaterialDetailsComponent}
+  {path: 'materialdetails', component: MaterialDetailsComponent},
+  {path: 'schedules', component: ScheduleComponent},
+  {path: 'scheduledetails', component: ScheduleDetailsComponent}
 ];
 
 @NgModule({

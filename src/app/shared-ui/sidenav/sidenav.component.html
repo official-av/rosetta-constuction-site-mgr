@@ -37,6 +37,11 @@
     <mat-icon>person</mat-icon>
     <span class="nav-caption">Materials</span>
   </a>
+  <a mat-list-item routerLink="schedules" (click)="closeSidenav()" [routerLinkActive]="'active'"
+     [routerLinkActiveOptions]="{'exact':'true'}">
+    <mat-icon>person</mat-icon>
+    <span class="nav-caption">Schedules</span>
+  </a>
   <!--<a *ngIf="authService.isAuthenticated()" mat-list-item (click)="closeSidenav();authService.logout()">
     <mat-icon>visibility_off</mat-icon>
     <span class="nav-caption">Logout</span></a>-->
