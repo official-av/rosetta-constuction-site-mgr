@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CoreService} from '../../core.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Machinery} from '../../models/machinery.model';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-machinery-details',
@@ -17,14 +18,12 @@ export class MachineryDetailsComponent implements OnInit, OnDestroy {
   subs: Subscription;
   mcForm: FormGroup;
 
-  /* TODO: add dates formatting*/
   /* TODO: add image component*/
-
-  /* TODO: add edit mode*/
 
   constructor(private coreService: CoreService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private datepipe: DatePipe) {
     this.defDate = new Date();
     this.mode = this.route.snapshot.fragment;
     if (this.mode === 'add') {
@@ -53,40 +52,40 @@ export class MachineryDetailsComponent implements OnInit, OnDestroy {
     this.router.navigate(['machinery']);
   }
 
+  test(event: any) {
+    console.log(event);
+    console.log(this.mcForm.value.start_date);
+  }
+
   onSubmit() {
+    const obj = new Machinery();
+    console.log(this.mcForm.value.start_date);
+    console.log(this.mcForm.value.end_date);
+    obj.cost = this.mcForm.value.cost;
+    obj.type = this.mcForm.value.type;
+    obj.start_date = this.datepipe.transform(this.mcForm.value.start_date, 'yyyy-MM-dd');
+    obj.end_date = this.datepipe.transform(this.mcForm.value.end_date, 'yyyy-MM-dd');
+    obj.comments = this.mcForm.value.comments;
+    obj.images = this.mcForm.value.images;
+    console.log(obj);
     if (this.mode === 'add') {
-      this.mc.cost = this.mcForm.value.cost;
-      this.mc.type = this.mcForm.value.type;
-      console.log(this.mcForm.value.start_date);
-      console.log(this.mcForm.value.end_date);
-      this.mc.comments = this.mcForm.value.comments;
-      this.mc.images = this.mcForm.value.images;
-      this.coreService.addMachinery(this.mc)
+      this.coreService.addMachinery(obj)
+        .then(result => console.log(result))
+        .then(() => {
+          this.cancel();
+        })
+        .catch(error => console.log(error));
+    } else {
+      obj.id = this.mc.id;
+      obj.site_id = this.mc.site_id;
+      this.mc = obj;
+      this.coreService.editMachinery(this.mc)
         .then(result => console.log(result))
         .then(() => {
           this.cancel();
         })
         .catch(error => console.log(error));
     }
-    /*else {
-         if ((this.labor.number !== this.laborForm.value.number)
-           || (this.labor.rate !== this.laborForm.value.rate)
-           || (this.labor.type !== this.laborForm.value.type)) {
-           this.labor.number = this.laborForm.value.number;
-           this.labor.rate = this.laborForm.value.rate;
-           this.labor.type = this.laborForm.value.type;
-           console.log('yes');
-           this.coreService.editLabor(this.labor)
-             .then(result => console.log(result))
-             .then(() => {
-               this.cancel();
-             })
-             .catch(error => console.log(error));
-         } else {
-           console.log('cancel');
-           this.cancel();
-         }
-       }*/
   }
 
   ngOnDestroy() {

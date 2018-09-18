@@ -2,8 +2,8 @@ export class Machinery {
   site_id?: string;
   id?: number;
   cost: number;
-  start_date?: Date;
-  end_date?: Date;
+  start_date?: string;
+  end_date?: string;
   comments?: string;
   images?: string;
   type: string;

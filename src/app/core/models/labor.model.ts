@@ -4,6 +4,6 @@ export class Labor {
   type: string;
   rate: number;
   receipt?: string;
-  date?: Date;
+  date?: string;
   number: number;
 }

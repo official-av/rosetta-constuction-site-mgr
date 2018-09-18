@@ -3,9 +3,9 @@ export class Material {
   id?: number;
   type: string;
   quantity: number;
-  consumed?: Date;
+  consumed?: number;
   cost: number;
-  date: Date;
+  date: string;
   comments?: string;
   images?: string;
 }

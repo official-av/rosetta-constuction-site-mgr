@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CoreService} from '../../core.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Schedule} from '../../models/schedule.model';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-schedule-details',
@@ -17,14 +18,12 @@ export class ScheduleDetailsComponent implements OnInit, OnDestroy {
   subs: Subscription;
   schForm: FormGroup;
 
-  /* TODO: add dates formatting*/
   /* TODO: add image component*/
-
-  /* TODO: add edit mode*/
 
   constructor(private coreService: CoreService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private datepipe: DatePipe) {
     this.defDate = new Date();
     this.mode = this.route.snapshot.fragment;
     if (this.mode === 'add') {
@@ -56,40 +55,28 @@ export class ScheduleDetailsComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    this.sch.task = this.schForm.value.task;
+    this.sch.percentage_completed = this.schForm.value.percentage_completed;
+    this.sch.units_completed = this.schForm.value.units_completed;
+    this.sch.date = this.datepipe.transform(this.schForm.value.date, 'yyyy-MM-dd');
+    this.sch.estimated_completion_date = this.datepipe.transform(this.schForm.value.estimated_completion_date, 'yyyy-MM-dd');
+    this.sch.comments = this.schForm.value.comments;
+    this.sch.images = this.schForm.value.images;
     if (this.mode === 'add') {
-      this.sch.task = this.schForm.value.task;
-      this.sch.percentage_completed = this.schForm.value.percentage_completed;
-      this.sch.units_completed = this.schForm.value.units_completed;
-      console.log(this.schForm.value.date);
-      console.log(this.schForm.value.estimated_completion_date);
-      this.sch.comments = this.schForm.value.comments;
-      this.sch.images = this.schForm.value.images;
       this.coreService.addSchedules(this.sch)
         .then(result => console.log(result))
         .then(() => {
           this.cancel();
         })
         .catch(error => console.log(error));
+    } else {
+      this.coreService.editSchedule(this.sch)
+        .then(result => console.log(result))
+        .then(() => {
+          this.cancel();
+        })
+        .catch(error => console.log(error));
     }
-    /*else {
-         if ((this.labor.number !== this.laborForm.value.number)
-           || (this.labor.rate !== this.laborForm.value.rate)
-           || (this.labor.type !== this.laborForm.value.type)) {
-           this.labor.number = this.laborForm.value.number;
-           this.labor.rate = this.laborForm.value.rate;
-           this.labor.type = this.laborForm.value.type;
-           console.log('yes');
-           this.coreService.editLabor(this.labor)
-             .then(result => console.log(result))
-             .then(() => {
-               this.cancel();
-             })
-             .catch(error => console.log(error));
-         } else {
-           console.log('cancel');
-           this.cancel();
-         }
-       }*/
   }
 
   ngOnDestroy() {

@@ -1,8 +1,8 @@
 export class Schedule {
   site_id?: string;
   id?: number;
-  date?: Date;
-  estimated_completion_date: Date;
+  date?: string;
+  estimated_completion_date: string;
   percentage_completed: number;
   units_completed: number;
   comments?: string;

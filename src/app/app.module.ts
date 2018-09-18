@@ -7,6 +7,7 @@ import {SharedModule} from './shared.module';
 import {CoreModule} from './core/core.module';
 import {RouterModule} from '@angular/router';
 import {RoutesModule} from './routes.module';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import {RoutesModule} from './routes.module';
     CoreModule,
     RoutesModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 

@@ -4,6 +4,7 @@ import {Subscription} from 'rxjs';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CoreService} from '../../core.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-material-details',
@@ -17,13 +18,11 @@ export class MaterialDetailsComponent implements OnInit, OnDestroy {
   matForm: FormGroup;
   defDate: Date;
 
-  /* TODO: add dates formatting*/
   /* TODO: add image component*/
-
-  /* TODO: add edit mode*/
   constructor(private coreService: CoreService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private datepipe: DatePipe) {
     this.defDate = new Date();
     this.mode = this.route.snapshot.fragment;
     if (this.mode === 'add') {
@@ -54,39 +53,27 @@ export class MaterialDetailsComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    this.mat.cost = this.matForm.value.cost;
+    this.mat.type = this.matForm.value.type;
+    this.mat.quantity = this.matForm.value.quantity;
+    this.mat.consumed = this.matForm.value.consumed;
+    this.mat.date = this.datepipe.transform(this.matForm.value.date, 'yyyy-MM-dd');
+    this.mat.images = this.matForm.value.images;
     if (this.mode === 'add') {
-      this.mat.cost = this.matForm.value.cost;
-      this.mat.type = this.matForm.value.type;
-      this.mat.quantity = this.matForm.value.quantity;
-      this.mat.consumed = this.matForm.value.consumed;
-      this.mat.date = this.matForm.value.date;
-      this.mat.images = this.matForm.value.images;
-      this.coreService.addMachinery(this.mat)
+      this.coreService.addMaterials(this.mat)
+        .then(result => console.log(result))
+        .then(() => {
+          this.cancel();
+        })
+        .catch(error => console.log(error));
+    } else {
+      this.coreService.editMaterials(this.mat)
         .then(result => console.log(result))
         .then(() => {
           this.cancel();
         })
         .catch(error => console.log(error));
     }
-    /*else {
-         if ((this.labor.number !== this.laborForm.value.number)
-           || (this.labor.rate !== this.laborForm.value.rate)
-           || (this.labor.type !== this.laborForm.value.type)) {
-           this.labor.number = this.laborForm.value.number;
-           this.labor.rate = this.laborForm.value.rate;
-           this.labor.type = this.laborForm.value.type;
-           console.log('yes');
-           this.coreService.editLabor(this.labor)
-             .then(result => console.log(result))
-             .then(() => {
-               this.cancel();
-             })
-             .catch(error => console.log(error));
-         } else {
-           console.log('cancel');
-           this.cancel();
-         }
-       }*/
   }
 
   ngOnDestroy() {
