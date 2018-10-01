@@ -18,7 +18,7 @@ export class MaterialComponent implements OnInit {
   }
 
   getMaterials() {
-    this.coreService.fetchMachinery()
+    this.coreService.fetchMaterials()
       .then((result: Array<Material>) => this.materials = result)
       .catch(error => console.log(error));
   }

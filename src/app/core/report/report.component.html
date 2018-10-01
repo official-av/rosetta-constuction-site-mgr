@@ -1,22 +1,18 @@
-<!--
 <div class="content">
-  <h5>Daily Report</h5>
-  <mat-card fxLayoutGap="10px">
-    <div class="activity" *ngIf="0==1;else noActivity" fxFlex>
-      <ng-container *ngFor="let activity of activities">
-        <mat-card>
-          <mat-card-title>{{activity.name}}</mat-card-title>
-          <mat-card-content>{{activity.description}}</mat-card-content>
-        </mat-card>
-      </ng-container>
-    </div>
-    <ng-template #noActivity>
-      <span fxFlex>No Activity today</span>
+    <div class="activity" fxFlex fxLayoutGap="10px">
+      <h5>Daily Report</h5>
+      <div *ngIf="activities|async;else noActivity">
+          <ng-container *ngFor="let activity of activities|async">
+              <mat-card>
+                <mat-card-subtitle>{{activity?.name}}</mat-card-subtitle>
+                <mat-card-content>Added a {{activity?.category}} on {{activity?.date}}</mat-card-content>
+              </mat-card>
+            </ng-container>
+      </div>      
+     <ng-template #noActivity>
+      <mat-card>
+        <span fxFlex>No Activity today</span>
+      </mat-card>
     </ng-template>
-    <button mat-mini-fab fxFlexAlign="end">
-      <mat-icon>add</mat-icon>
-    </button>
-  </mat-card>
+    </div>    
 </div>
-
--->
