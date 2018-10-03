@@ -3,6 +3,9 @@
     <app-sidenav (sidenavClose)="sidenav.close()"></app-sidenav>
   </mat-sidenav>
   <mat-sidenav-content>
+    <ng-http-loader [backgroundColor]="'#ff0000'" [spinner]="spinkit.skWave" [debounceDelay]="100" [minDuration]="300"
+      [extraDuration]="300">
+    </ng-http-loader>
     <app-navbar (sidenavToggled)="sidenav.toggle()"></app-navbar>
     <div class="container-custom">
       <router-outlet></router-outlet>
