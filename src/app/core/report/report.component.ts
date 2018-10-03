@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./report.component.scss']
 })
 export class ReportComponent implements OnInit {
-  activities: Promise<Array<Activity>>;
+  activities: Promise<any>;
   schedules:Array<Schedule>=[];
   labors:Array<Labor>=[];
   materials:Array<Material>=[];

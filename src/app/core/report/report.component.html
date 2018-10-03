@@ -1,7 +1,70 @@
 <div class="content">
-    <div class="activity" fxFlex fxLayoutGap="10px">
-      <h5>Daily Report</h5>
-      <div *ngIf="activities|async;else noActivity">
+  <div class="activity">
+    <h5>Daily Report</h5>
+    <div class="inner-container" fxLayoutGap="10px" fxLayout.lt-md="column" *ngIf="activities|async as activities">
+      <div> <!--Labors-->
+        <h6>Labors</h6>
+        <div *ngIf="activities.labors.length!=0;else noLabors">
+          <ng-container *ngFor="let labor of activities.labors">
+            <mat-card>
+              <span fxFlex>Added {{labor?.type}} today</span>
+            </mat-card>
+          </ng-container>
+        </div>
+        <ng-template #noLabors>
+          <mat-card>
+            <span fxFlex>No Labors added today</span>
+          </mat-card>
+        </ng-template>
+      </div>
+      <div> <!--Materials-->
+        <h6>Materials</h6>
+        <div *ngIf="activities.materials.length!=0;else noMats">
+          <ng-container *ngFor="let mat of activities.materials">
+            <mat-card>
+              <span fxFlex>Added <strong>{{mat?.type}}</strong> today</span>
+            </mat-card>
+          </ng-container>
+        </div>
+        <ng-template #noMats>
+          <mat-card>
+            <span fxFlex>No Materials added today</span>
+          </mat-card>
+        </ng-template>
+      </div>
+      <div> <!--Machinery-->
+        <h6>Machinery</h6>
+        <div *ngIf="activities.machines.length!=0;else noMacs">
+          <ng-container *ngFor="let mac of activities.machines">
+            <mat-card>
+              <span fxFlex>Added <strong>{{mac?.type}}</strong> today</span>
+            </mat-card>
+          </ng-container>
+        </div>
+        <ng-template #noMacs>
+          <mat-card>
+            <span fxFlex>No Machinery added today</span>
+          </mat-card>
+        </ng-template>
+      </div>
+      <div> <!--Schedules-->
+        <h6>Schedules</h6>
+        <div *ngIf="activities.schedules.length!=0;else noScheds">
+          <ng-container *ngFor="let sched of activities.schedules">
+            <mat-card>
+              <span fxFlex>Added <strong>{{sched?.task}}</strong> today</span>
+            </mat-card>
+          </ng-container>
+        </div>
+        <ng-template #noScheds>
+          <mat-card>
+            <span fxFlex>No Schedules added today</span>
+          </mat-card>
+        </ng-template>
+      </div>      
+    </div>
+
+    <!-- <div *ngIf="activities|async;else noActivity">
           <ng-container *ngFor="let activity of activities|async">
               <mat-card>
                 <mat-card-subtitle>{{activity?.name}}</mat-card-subtitle>
@@ -13,6 +76,6 @@
       <mat-card>
         <span fxFlex>No Activity today</span>
       </mat-card>
-    </ng-template>
-    </div>    
+    </ng-template> -->
+  </div>
 </div>

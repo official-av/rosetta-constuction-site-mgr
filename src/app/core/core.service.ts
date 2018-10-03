@@ -1,11 +1,11 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Labor} from './models/labor.model';
-import {environment} from '../../environments/environment';
-import {BehaviorSubject} from 'rxjs';
-import {Machinery} from './models/machinery.model';
-import {Material} from './models/material.model';
-import {Schedule} from './models/schedule.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Labor } from './models/labor.model';
+import { environment } from '../../environments/environment';
+import { BehaviorSubject } from 'rxjs';
+import { Machinery } from './models/machinery.model';
+import { Material } from './models/material.model';
+import { Schedule } from './models/schedule.model';
 import { Activity } from './models/activity.model';
 
 @Injectable()
@@ -281,39 +281,52 @@ export class CoreService {
   }
 
   // Report Calls
-  async getItems() :Promise<any> {
+  async getItems(): Promise<any> {
     let labors = await this.fetchLabor()
-    .then((result: Array<Labor>) => labors = result)
-    .catch(error => console.log(error));
+      .then((result: Array<Labor>) => labors = result)
+      .catch(error => console.log(error));
     let machines = await this.fetchMachinery()
-    .then((result: Array<Machinery>) => machines = result)
-    .catch(error => console.log(error));
+      .then((result: Array<Machinery>) => machines = result)
+      .catch(error => console.log(error));
     let materials = await this.fetchMaterials()
-    .then((result: Array<Material>) => materials = result)
-    .catch(error => console.log(error));
+      .then((result: Array<Material>) => materials = result)
+      .catch(error => console.log(error));
     let schedules = await this.fetchSchedules()
-    .then((result: Array<Schedule>) => schedules = result)
-    .catch(error => console.log(error));
-    console.log({labors:labors,machines:machines,materials:materials,schedules:schedules});
-    return {labors:labors,machines:machines,materials:materials,schedules:schedules};
+      .then((result: Array<Schedule>) => schedules = result)
+      .catch(error => console.log(error));
+    console.log({ labors: labors, machines: machines, materials: materials, schedules: schedules });
+    return { labors: labors, machines: machines, materials: materials, schedules: schedules };
   }
 
-  async fetchActivities(): Promise<Array<Activity>> {    
-      let activities:Array<Activity>=[];
-      const obj:any= await this.getItems();
-      for(let sched of obj.schedules){
-        activities.push({date:sched.date,name:sched.task,category:'Schedule'});
-      }
-      for(let labor of obj.labors){
-        activities.push({date:labor.date,name:labor.type,category:'Labor'});
-      }
-      for(let mat of obj.materials){
-        activities.push({date:mat.date,name:mat.type,category:'Material'});
-      }
-      for(let machine of obj.machines){
-        activities.push({date:machine.start_date,name:machine.type,category:'Machine'});
-      }
-      console.log(activities);
-      return(activities);   
+  checkDate(date: string) {
+    return date === new Date().toISOString().split('T')[0];
+  }
+
+  async fetchActivities(): Promise<any> {
+    let obj2: {
+      labors: Array<Labor>
+      , machines: Array<Machinery>
+      , materials: Array<Material>
+      , schedules: Array<Schedule>
+    } = {labors:[],machines:[],materials:[],schedules:[]};
+    const obj: any = await this.getItems();
+    for (let sched of obj.schedules) {
+      if (this.checkDate(sched.date))
+        obj2.schedules.push(sched);
+    }
+    for (let labor of obj.labors) {
+      if (this.checkDate(labor.date))
+        obj2.labors.push(labor);
+    }
+    for (let mat of obj.materials) {
+      if (this.checkDate(mat.date))
+       obj2.materials.push(mat);
+    }
+    for (let machine of obj.machines) {
+      if (this.checkDate(machine.start_date))
+        obj2.machines.push(machine);
+    }
+    console.log(obj2);
+    return (obj2);
   }
 }
