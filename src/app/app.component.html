@@ -7,7 +7,7 @@
       [extraDuration]="300">
     </ng-http-loader>
     <app-navbar (sidenavToggled)="sidenav.toggle()"></app-navbar>
-    <div class="container-custom" ngClass.gt-xs="container-desktop">
+    <div class="container-custom" ngClass.gt-xs="container-desktop" [ngClass.gt-xs]="{'home':path=='/','container-desktop':path!=='/'}">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
