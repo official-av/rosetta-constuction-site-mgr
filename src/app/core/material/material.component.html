@@ -17,7 +17,7 @@
         </div>
         <div class="layer" fxLayoutGap="10px">
           <span fxFlex>Total Quantity: {{material.quantity}}</span>
-          <span fxFlex>Quantity Consumed: {{material.in_vs_out}}</span>
+          <span fxFlex>Status: {{material.in_vs_out===1?"Arrived":"Used"}}</span>
           <span fxFlexAlign="end">Cost {{material.cost}}</span>
         </div>
         <!-- TODO : Add images component-->
