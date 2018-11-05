@@ -11,10 +11,9 @@
             <span>
             Progress {{task.actual_progress| number : '1.2'}}/{{task.expected_progress| number : '1.2'}} (actual/expected)
             </span>
-            <!--<a role="button" routerLink="../editProgress" fragment="edit"
-               (click)="coreService.current_task.next(task)">
+            <button mat-button (click)="modalService.openDialog({id:task.id,progress:task.actual_progress})">
               <mat-icon fxFlexAlign="end">edit</mat-icon>
-            </a>-->
+            </button>
           </mat-panel-description>
         </mat-expansion-panel-header>
         <app-task-details *ngFor="let item of task.items" [item]="item"></app-task-details>

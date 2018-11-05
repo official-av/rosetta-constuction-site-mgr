@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {CoreService} from '../../core.service';
+import {MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-edit-progress',
@@ -11,10 +12,14 @@ export class EditProgressComponent implements OnInit {
   progress: number;
   id: number;
 
-  constructor(private router: Router, private coreService: CoreService) {
+  constructor(private router: Router,
+              private coreService: CoreService,
+              @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit() {
+    this.progress = this.data.progress;
+    this.id = this.data.id;
   }
 
   cancel() {

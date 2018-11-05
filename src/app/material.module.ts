@@ -2,13 +2,17 @@ import {NgModule} from '@angular/core';
 import {
   MatButtonModule,
   MatCardModule,
-  MatDatepickerModule, MatExpansionModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatExpansionModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatNativeDateModule, MatRadioModule,
-  MatSidenavModule, MatSlideToggleModule,
+  MatNativeDateModule,
+  MatRadioModule,
+  MatSidenavModule,
+  MatSlideToggleModule,
   MatToolbarModule
 } from '@angular/material';
 
@@ -26,7 +30,8 @@ import {
     MatNativeDateModule,
     MatRadioModule,
     MatSlideToggleModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDialogModule
   ],
   exports: [
     MatSidenavModule,
@@ -41,7 +46,8 @@ import {
     MatNativeDateModule,
     MatRadioModule,
     MatSlideToggleModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDialogModule
   ]
 })
 

@@ -39,7 +39,8 @@ import {EditProgressComponent} from './progress/edit-progress/edit-progress.comp
     ProgressComponent,
     TaskDetailsComponent,
     EditProgressComponent],
-  providers: [CoreService]
+  providers: [CoreService],
+  entryComponents:[EditProgressComponent]
 })
 
 export class CoreModule {

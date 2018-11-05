@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Task} from '../models/task.model';
 import {CoreService} from '../core.service';
+import {ModalService} from '../modal.service';
 
 @Component({
   selector: 'app-progress',
@@ -116,7 +117,7 @@ export class ProgressComponent implements OnInit {
     }
   ];
 
-  constructor(private coreService: CoreService) {
+  constructor(private coreService: CoreService, public modalService:ModalService) {
     this.tasks = this.temp;
     /*this.coreService.getProgress()
       .then((result: Array<Task>) => this.tasks = result);*/
