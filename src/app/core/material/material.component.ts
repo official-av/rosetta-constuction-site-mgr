@@ -9,7 +9,7 @@ import {Material} from '../models/material.model';
 })
 export class MaterialComponent implements OnInit {
   materials: Array<Material>;
-  
+
   constructor(public coreService: CoreService) {
   }
 
@@ -20,6 +20,7 @@ export class MaterialComponent implements OnInit {
   getMaterials() {
     this.coreService.fetchMaterials()
       .then((result: Array<Material>) => this.materials = result)
+      .then(() => console.log(this.materials))
       .catch(error => console.log(error));
   }
 

@@ -17,6 +17,7 @@ export class MaterialDetailsComponent implements OnInit, OnDestroy {
   subs: Subscription;
   matForm: FormGroup;
   defDate: Date;
+  consumed: boolean;
 
   /* TODO: add image component*/
   constructor(private coreService: CoreService,
@@ -30,22 +31,20 @@ export class MaterialDetailsComponent implements OnInit, OnDestroy {
     } else {
       this.subs = this.coreService.current_material.subscribe((mat: Material) => {
         this.mat = mat;
-        console.log(this.mat);
       });
     }
   }
 
 
   ngOnInit() {
-    console.log('form init');
     this.matForm = new FormGroup({
       type: new FormControl(this.mat.type, Validators.required),
       cost: new FormControl(this.mat.cost, Validators.required),
       date: new FormControl(this.mat.date, Validators.required),
       quantity: new FormControl(this.mat.quantity, Validators.required),
-      consumed: new FormControl(this.mat.consumed, Validators.required),
       images: new FormControl(this.mat.images)
     });
+    this.consumed = this.mat.in_vs_out === 1;
   }
 
   cancel() {
@@ -56,9 +55,11 @@ export class MaterialDetailsComponent implements OnInit, OnDestroy {
     this.mat.cost = this.matForm.value.cost;
     this.mat.type = this.matForm.value.type;
     this.mat.quantity = this.matForm.value.quantity;
-    this.mat.consumed = this.matForm.value.consumed;
+    this.mat.in_vs_out = this.matForm.value.in_vs_out;
     this.mat.date = this.datepipe.transform(this.matForm.value.date, 'yyyy-MM-dd');
     this.mat.images = this.matForm.value.images;
+    this.mat.in_vs_out = this.consumed ? 1 : -1;
+    console.log(this.mat);
     if (this.mode === 'add') {
       this.coreService.addMaterials(this.mat)
         .then(result => console.log(result))
@@ -74,6 +75,11 @@ export class MaterialDetailsComponent implements OnInit, OnDestroy {
         })
         .catch(error => console.log(error));
     }
+  }
+
+  toggleConsumed() {
+    this.consumed = !this.consumed;
+    console.log(this.consumed);
   }
 
   ngOnDestroy() {

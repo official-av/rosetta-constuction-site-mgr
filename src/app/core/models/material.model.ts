@@ -3,9 +3,13 @@ export class Material {
   id?: number;
   type: string;
   quantity: number;
-  consumed?: number;
+  in_vs_out?: number;
   cost: number;
   date: string;
-  comments?: string;
+  comments?: number;
   images?: string;
+
+  constructor() {
+    this.in_vs_out = -1;
+  }
 }

@@ -8,7 +8,7 @@ import {
   MatInputModule,
   MatListModule,
   MatNativeDateModule, MatRadioModule,
-  MatSidenavModule,
+  MatSidenavModule, MatSlideToggleModule,
   MatToolbarModule
 } from '@angular/material';
 
@@ -24,7 +24,8 @@ import {
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSlideToggleModule
   ],
   exports: [
     MatSidenavModule,
@@ -37,7 +38,8 @@ import {
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSlideToggleModule
   ]
 })
 

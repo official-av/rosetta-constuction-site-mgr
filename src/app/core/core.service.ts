@@ -238,7 +238,7 @@ export class CoreService {
         + '/insert-material?site_id=' + this.site_id
         + '&cost=' + mat.cost
         + '&quantity=' + mat.quantity
-        + '&consumed=' + mat.consumed
+        + '&in_vs_out=' + mat.in_vs_out
         + '&images=' + mat.images
         + '&type=' + mat.type
         , this.httpOptions)
@@ -254,9 +254,10 @@ export class CoreService {
     return new Promise((resolve, reject) => {
       this.http.get(environment.api_url
         + '/edit-material?site_id=' + this.site_id
+        + '&id=' + mat.id
         + '&cost=' + mat.cost
         + '&quantity=' + mat.quantity
-        + '&consumed=' + mat.consumed
+        + '&in_vs_out=' + mat.in_vs_out
         + '&images=' + mat.images
         + '&type=' + mat.type
         , this.httpOptions)
