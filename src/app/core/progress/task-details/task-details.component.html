@@ -1,0 +1,24 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{item.item}}
+      </mat-panel-title>
+      <mat-panel-description>
+        <span>Progress {{item.actual_progress| number : '1.2'}}/{{item.expected_progress| number : '1.2'}} (actual/expected)</span>
+        <span>Last Updated: {{item.last_update}}</span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div fxLayout="column">
+      <div>{{item.description}}</div>
+      <div fxLayout="row">
+        <span>Start Date: {{item.start_date}}</span>
+        <span>End Date: {{item.end_date}}</span>
+      </div>
+      <div fxLayout="row">
+        <span>Unit Cost: {{item.unit_cost}}</span>
+        <span>Quantity: {{item.quantity}} {{item.item_units}}</span>
+      </div>
+    </div>
+  </mat-expansion-panel>

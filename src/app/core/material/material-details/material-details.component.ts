@@ -56,7 +56,7 @@ export class MaterialDetailsComponent implements OnInit, OnDestroy {
     this.mat.type = this.matForm.value.type;
     this.mat.quantity = this.matForm.value.quantity;
     this.mat.in_vs_out = this.matForm.value.in_vs_out;
-    this.mat.date = this.datepipe.transform(this.matForm.value.date, 'yyyy-MM-dd');
+    this.mat.date = this.datepipe.transform(this.matForm.value.start_date, 'yyyy-MM-dd');
     this.mat.images = this.matForm.value.images;
     this.mat.in_vs_out = this.consumed ? 1 : -1;
     console.log(this.mat);

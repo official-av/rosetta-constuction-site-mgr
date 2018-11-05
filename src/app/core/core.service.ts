@@ -5,8 +5,7 @@ import {environment} from '../../environments/environment';
 import {BehaviorSubject} from 'rxjs';
 import {Machinery} from './models/machinery.model';
 import {Material} from './models/material.model';
-import {Schedule} from './models/schedule.model';
-import {Activity} from './models/activity.model';
+import {Task} from './models/task.model';
 
 @Injectable()
 export class CoreService {
@@ -14,7 +13,7 @@ export class CoreService {
   current_labor = new BehaviorSubject(new Labor());
   current_machine = new BehaviorSubject(new Machinery());
   current_material = new BehaviorSubject(new Material());
-  current_schedule = new BehaviorSubject(new Schedule());
+  // current_task = new BehaviorSubject(new task());
   httpOptions = {
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin': '*'
@@ -152,8 +151,8 @@ export class CoreService {
     });
   }
 
-  /*Schedule Calls*/
-  fetchSchedules(): Promise<Array<Schedule>> {
+  /*Item Calls*/
+  /*fetchSchedules(): Promise<Array<Item>> {
     return new Promise((resolve, reject) => {
       this.http.get(environment.api_url + '/get-schedule?site_id=' + this.site_id
         , this.httpOptions)
@@ -165,14 +164,14 @@ export class CoreService {
     });
   }
 
-  addSchedules(sch: Schedule) {
+  addSchedules(sch: Item) {
     return new Promise((resolve, reject) => {
       this.http.get(environment.api_url
         + '/insert-schedule?site_id=' + this.site_id
         + '&percentage_complted=' + sch.percentage_completed
         + '&units_completed=' + sch.units_completed
-        + '&date=' + sch.date
-        + '&estimated_completion_date=' + sch.estimated_completion_date
+        + '&start_date=' + sch.start_date
+        + '&end_date=' + sch.end_date
         + '&images=' + sch.images
         + '&task=' + sch.task
         + '&comments=' + sch.comments
@@ -185,14 +184,14 @@ export class CoreService {
     });
   }
 
-  editSchedule(sch: Schedule) {
+  editSchedule(sch: Item) {
     return new Promise((resolve, reject) => {
       this.http.get(environment.api_url
         + '/edit-schedule?site_id=' + this.site_id
         + '&percentage_complted=' + sch.percentage_completed
         + '&units_completed=' + sch.units_completed
-        + '&date=' + sch.date
-        + '&estimated_completion_date=' + sch.estimated_completion_date
+        + '&start_date=' + sch.start_date
+        + '&end_date=' + sch.end_date
         + '&images=' + sch.images
         + '&task=' + sch.task
         + '&comments=' + sch.comments
@@ -205,7 +204,7 @@ export class CoreService {
     });
   }
 
-  deleteSchedule(sch: Schedule) {
+  deleteSchedule(sch: Item) {
     return new Promise((resolve, reject) => {
       this.http.get(environment.api_url + '/delete-schedule'
         + '?id=' + sch.id
@@ -217,7 +216,7 @@ export class CoreService {
           }
         }, error => reject(error));
     });
-  }
+  }*/
 
   /*Material Calls*/
   fetchMaterials(): Promise<Array<Material>> {
@@ -284,49 +283,81 @@ export class CoreService {
   }
 
   // Report Calls
-  async getItems(): Promise<any> {
-    let labors = await this.fetchLabor()
-      .then((result: Array<Labor>) => labors = result)
-      .catch(error => console.log(error));
-    let machines = await this.fetchMachinery()
-      .then((result: Array<Machinery>) => machines = result)
-      .catch(error => console.log(error));
-    let materials = await this.fetchMaterials()
-      .then((result: Array<Material>) => materials = result)
-      .catch(error => console.log(error));
-    let schedules = await this.fetchSchedules()
-      .then((result: Array<Schedule>) => schedules = result)
-      .catch(error => console.log(error));
-    console.log({labors: labors, machines: machines, materials: materials, schedules: schedules});
-    return {labors: labors, machines: machines, materials: materials, schedules: schedules};
+  /*  async getItems(): Promise<any> {
+      let labors = await this.fetchLabor()
+        .then((result: Array<Labor>) => labors = result)
+        .catch(error => console.log(error));
+      let machines = await this.fetchMachinery()
+        .then((result: Array<Machinery>) => machines = result)
+        .catch(error => console.log(error));
+      let materials = await this.fetchMaterials()
+        .then((result: Array<Material>) => materials = result)
+        .catch(error => console.log(error));
+      let schedules = await this.fetchSchedules()
+        .then((result: Array<Item>) => schedules = result)
+        .catch(error => console.log(error));
+      console.log({labors: labors, machines: machines, materials: materials, schedules: schedules});
+      return {labors: labors, machines: machines, materials: materials, schedules: schedules};
+    }
+
+    checkDate(date: string) {
+      return date === new Date().toISOString().split('T')[0];
+    }
+
+    async fetchActivities(): Promise<any> {
+      const obj2: {
+        labors: Array<Labor>, machines: Array<Machinery>, materials: Array<Material>, schedules: Array<Item>
+      } = {labors: [], machines: [], materials: [], schedules: []};
+      const obj: any = await this.getItems();
+      for (const sched of obj.schedules) {
+        if (this.checkDate(sched.start_date)) {
+          obj2.schedules.push(sched);
+        }
+      }
+      for (const labor of obj.labors) {
+        if (this.checkDate(labor.date)) {
+          obj2.labors.push(labor);
+        }
+      }
+      for (const mat of obj.materials) {
+        if (this.checkDate(mat.date)) {
+          obj2.materials.push(mat);
+        }
+      }
+      for (const machine of obj.machines) {
+        if (this.checkDate(machine.start_date)) {
+          obj2.machines.push(machine);
+        }
+      }
+      console.log(obj2);
+      return (obj2);
+    }*/
+
+  /*Task Calls*/
+  getProgress(): Promise<Array<Task>> {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url + 'get-progress?site_id=' + this.site_id
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.statusCode === 200) {
+            resolve(result.progress);
+          }
+        }, error => reject(error));
+    });
+
   }
 
-  checkDate(date: string) {
-    return date === new Date().toISOString().split('T')[0];
-  }
-
-  async fetchActivities(): Promise<any> {
-    let obj2: {
-      labors: Array<Labor>, machines: Array<Machinery>, materials: Array<Material>, schedules: Array<Schedule>
-    } = {labors: [], machines: [], materials: [], schedules: []};
-    const obj: any = await this.getItems();
-    for (let sched of obj.schedules) {
-      if (this.checkDate(sched.date))
-        obj2.schedules.push(sched);
-    }
-    for (let labor of obj.labors) {
-      if (this.checkDate(labor.date))
-        obj2.labors.push(labor);
-    }
-    for (let mat of obj.materials) {
-      if (this.checkDate(mat.date))
-        obj2.materials.push(mat);
-    }
-    for (let machine of obj.machines) {
-      if (this.checkDate(machine.start_date))
-        obj2.machines.push(machine);
-    }
-    console.log(obj2);
-    return (obj2);
+  editProgress(id: number, actual_progress: number) {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url
+        + '/edit-progress?id=' + id
+        + '&actual_progress=' + actual_progress
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            resolve(result.message);
+          }
+        }, error => reject(error));
+    });
   }
 }

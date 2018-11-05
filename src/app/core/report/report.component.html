@@ -68,7 +68,7 @@
           <ng-container *ngFor="let activity of activities|async">
               <mat-card>
                 <mat-card-subtitle>{{activity?.name}}</mat-card-subtitle>
-                <mat-card-content>Added a {{activity?.category}} on {{activity?.date}}</mat-card-content>
+                <mat-card-content>Added a {{activity?.category}} on {{activity?.start_date}}</mat-card-content>
               </mat-card>
             </ng-container>
       </div>      

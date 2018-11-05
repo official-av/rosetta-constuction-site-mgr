@@ -1,0 +1,18 @@
+<div class="content">
+  <!--Item-->
+  <div fxLayoutGap="10px">
+    <h5 fxFlex>Edit Progress</h5>
+    <button class="back-btn" fxFlexAlign="end" mat-icon-button (click)="cancel()">
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+  </div>
+  <mat-card class="resource">
+    <mat-card-content>
+      <mat-form-field>
+        <input matInput name="actual_progress" placeholder="Actual Progress" [(ngModel)]="progress">
+      </mat-form-field>
+      <button type="button" mat-raised-button (click)="submit()">Update</button>
+    </mat-card-content>
+  </mat-card>
+</div>
+

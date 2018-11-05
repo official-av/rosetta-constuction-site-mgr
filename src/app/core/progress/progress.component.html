@@ -1,0 +1,27 @@
+<div class="content">
+  <h5>Progress</h5>
+  <div fxLayout="column">
+    <mat-accordion *ngIf="tasks&&tasks.length>0;else noResource">
+      <mat-expansion-panel *ngFor="let task of tasks">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{task.task}}
+          </mat-panel-title>
+          <mat-panel-description>
+            <span>
+            Progress {{task.actual_progress| number : '1.2'}}/{{task.expected_progress| number : '1.2'}} (actual/expected)
+            </span>
+            <!--<a role="button" routerLink="../editProgress" fragment="edit"
+               (click)="coreService.current_task.next(task)">
+              <mat-icon fxFlexAlign="end">edit</mat-icon>
+            </a>-->
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-task-details *ngFor="let item of task.items" [item]="item"></app-task-details>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <ng-template #noResource>
+      <mat-card><span fxFlex>No Tasks available</span></mat-card>
+    </ng-template>
+  </div>
+</div>

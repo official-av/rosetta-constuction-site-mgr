@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {
   MatButtonModule,
   MatCardModule,
-  MatDatepickerModule,
+  MatDatepickerModule, MatExpansionModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
@@ -25,7 +25,8 @@ import {
     MatDatepickerModule,
     MatNativeDateModule,
     MatRadioModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatExpansionModule
   ],
   exports: [
     MatSidenavModule,
@@ -39,7 +40,8 @@ import {
     MatDatepickerModule,
     MatNativeDateModule,
     MatRadioModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatExpansionModule
   ]
 })
 

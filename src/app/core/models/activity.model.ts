@@ -1,5 +1,5 @@
 export class Activity {
-    date:string;
-    name:string;
-    category:string;
+  date: string;
+  name: string;
+  category: string;
 }
