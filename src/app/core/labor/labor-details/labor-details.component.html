@@ -18,6 +18,14 @@
         <mat-form-field>
           <input matInput formControlName="number" placeholder="Number">
         </mat-form-field>
+        <div fxLayout fxLayoutGap="5px">
+          <label for="gender">Gender</label>
+          <mat-radio-group fxLayoutGap="5px" id="gender" formControlName="gender">
+            <mat-radio-button value="M">Male</mat-radio-button>
+            <mat-radio-button value="F">Female</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
         <button type="submit" mat-raised-button [ngClass]="{'custom-btn':laborForm.valid}"
                 [disabled]="!laborForm.valid">Done
         </button>

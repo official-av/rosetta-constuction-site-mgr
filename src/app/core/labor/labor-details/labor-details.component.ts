@@ -36,7 +36,8 @@ export class LaborDetailsComponent implements OnInit, OnDestroy {
     this.laborForm = new FormGroup({
       type: new FormControl(this.labor.type, Validators.required),
       rate: new FormControl(this.labor.rate, Validators.required),
-      number: new FormControl(this.labor.number, Validators.required)
+      number: new FormControl(this.labor.number, Validators.required),
+      gender: new FormControl(this.labor.gender, Validators.required)
     });
   }
 
@@ -49,6 +50,7 @@ export class LaborDetailsComponent implements OnInit, OnDestroy {
       this.labor.number = this.laborForm.value.number;
       this.labor.rate = this.laborForm.value.rate;
       this.labor.type = this.laborForm.value.type;
+      this.labor.gender = this.laborForm.value.gender;
       this.coreService.addLabor(this.labor)
         .then(result => console.log(result))
         .then(() => {
@@ -58,10 +60,11 @@ export class LaborDetailsComponent implements OnInit, OnDestroy {
     } else {
       if ((this.labor.number !== this.laborForm.value.number)
         || (this.labor.rate !== this.laborForm.value.rate)
-        || (this.labor.type !== this.laborForm.value.type)) {
+        || (this.labor.type !== this.laborForm.value.type) || (this.labor.gender !== this.laborForm.value.gender)) {
         this.labor.number = this.laborForm.value.number;
         this.labor.rate = this.laborForm.value.rate;
         this.labor.type = this.laborForm.value.type;
+        this.labor.gender = this.laborForm.value.gender;
         console.log('yes');
         this.coreService.editLabor(this.labor)
           .then(result => console.log(result))

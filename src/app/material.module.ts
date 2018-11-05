@@ -7,7 +7,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatNativeDateModule,
+  MatNativeDateModule, MatRadioModule,
   MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
@@ -23,7 +23,8 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatRadioModule
   ],
   exports: [
     MatSidenavModule,
@@ -35,7 +36,8 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatRadioModule
   ]
 })
 

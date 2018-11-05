@@ -1,12 +1,12 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Labor } from './models/labor.model';
-import { environment } from '../../environments/environment';
-import { BehaviorSubject } from 'rxjs';
-import { Machinery } from './models/machinery.model';
-import { Material } from './models/material.model';
-import { Schedule } from './models/schedule.model';
-import { Activity } from './models/activity.model';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Labor} from './models/labor.model';
+import {environment} from '../../environments/environment';
+import {BehaviorSubject} from 'rxjs';
+import {Machinery} from './models/machinery.model';
+import {Material} from './models/material.model';
+import {Schedule} from './models/schedule.model';
+import {Activity} from './models/activity.model';
 
 @Injectable()
 export class CoreService {
@@ -44,6 +44,7 @@ export class CoreService {
         + '&labor_type=' + labor.type
         + '&number=' + labor.number
         + '&wage_per_person=' + labor.rate
+        + '&gender=' + labor.gender
         , this.httpOptions)
         .subscribe((result: any) => {
           if (result.status_code === 1) {
@@ -61,6 +62,7 @@ export class CoreService {
         + '&labor_type=' + labor.type
         + '&wage_per_person=' + labor.rate
         + '&number=' + labor.number
+        + '&gender=' + labor.gender
         , this.httpOptions)
         .subscribe((result: any) => {
           if (result.status_code === 1) {
@@ -294,8 +296,8 @@ export class CoreService {
     let schedules = await this.fetchSchedules()
       .then((result: Array<Schedule>) => schedules = result)
       .catch(error => console.log(error));
-    console.log({ labors: labors, machines: machines, materials: materials, schedules: schedules });
-    return { labors: labors, machines: machines, materials: materials, schedules: schedules };
+    console.log({labors: labors, machines: machines, materials: materials, schedules: schedules});
+    return {labors: labors, machines: machines, materials: materials, schedules: schedules};
   }
 
   checkDate(date: string) {
@@ -304,11 +306,8 @@ export class CoreService {
 
   async fetchActivities(): Promise<any> {
     let obj2: {
-      labors: Array<Labor>
-      , machines: Array<Machinery>
-      , materials: Array<Material>
-      , schedules: Array<Schedule>
-    } = {labors:[],machines:[],materials:[],schedules:[]};
+      labors: Array<Labor>, machines: Array<Machinery>, materials: Array<Material>, schedules: Array<Schedule>
+    } = {labors: [], machines: [], materials: [], schedules: []};
     const obj: any = await this.getItems();
     for (let sched of obj.schedules) {
       if (this.checkDate(sched.date))
@@ -320,7 +319,7 @@ export class CoreService {
     }
     for (let mat of obj.materials) {
       if (this.checkDate(mat.date))
-       obj2.materials.push(mat);
+        obj2.materials.push(mat);
     }
     for (let machine of obj.machines) {
       if (this.checkDate(machine.start_date))

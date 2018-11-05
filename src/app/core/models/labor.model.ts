@@ -6,4 +6,9 @@ export class Labor {
   receipt?: string;
   date?: string;
   number: number;
+  gender: 'M' | 'F';
+
+  constructor() {
+    this.gender = 'M';
+  }
 }
