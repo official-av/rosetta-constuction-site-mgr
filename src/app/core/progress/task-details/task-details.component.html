@@ -1,24 +1,19 @@
 <mat-accordion>
-  <mat-expansion-panel>
+  <mat-expansion-panel ngClass.lt-md="custom-panel">
     <mat-expansion-panel-header>
       <mat-panel-title>
         {{item.item}}
       </mat-panel-title>
       <mat-panel-description>
-        <span>Progress {{item.actual_progress| number : '1.2'}}/{{item.expected_progress| number : '1.2'}} (actual/expected)</span>
+        <span matTooltip="(actual/expected)">Progress {{item.actual_progress| number : '1.2'}}/{{item.expected_progress| number : '1.2'}}</span>
         <span>Last Updated: {{item.last_update}}</span>
       </mat-panel-description>
     </mat-expansion-panel-header>
-
-    <div fxLayout="column">
-      <div>{{item.description}}</div>
-      <div fxLayout="row">
-        <span>Start Date: {{item.start_date}}</span>
-        <span>End Date: {{item.end_date}}</span>
-      </div>
-      <div fxLayout="row">
-        <span>Unit Cost: {{item.unit_cost}}</span>
-        <span>Quantity: {{item.quantity}} {{item.item_units}}</span>
-      </div>
-    </div>
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile colspan="2">{{item.description}}</mat-grid-tile>
+      <mat-grid-tile>Start Date: {{item.start_date}}</mat-grid-tile>
+      <mat-grid-tile>End Date: {{item.end_date}}</mat-grid-tile>
+      <mat-grid-tile>Unit Cost: {{item.unit_cost}}</mat-grid-tile>
+      <mat-grid-tile>Quantity: {{item.quantity}} {{item.item_units}}</mat-grid-tile>
+    </mat-grid-list>
   </mat-expansion-panel>

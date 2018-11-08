@@ -117,7 +117,7 @@ export class ProgressComponent implements OnInit {
     }
   ];
 
-  constructor(private coreService: CoreService, public modalService:ModalService) {
+  constructor(private coreService: CoreService, public modalService: ModalService) {
     this.tasks = this.temp;
     /*this.coreService.getProgress()
       .then((result: Array<Task>) => this.tasks = result);*/

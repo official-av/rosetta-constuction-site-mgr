@@ -6,6 +6,7 @@ import {
   MatDialogModule,
   MatExpansionModule,
   MatFormFieldModule,
+  MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
@@ -31,7 +32,8 @@ import {
     MatRadioModule,
     MatSlideToggleModule,
     MatExpansionModule,
-    MatDialogModule
+    MatDialogModule,
+    MatGridListModule
   ],
   exports: [
     MatSidenavModule,
@@ -47,7 +49,8 @@ import {
     MatRadioModule,
     MatSlideToggleModule,
     MatExpansionModule,
-    MatDialogModule
+    MatDialogModule,
+    MatGridListModule
   ]
 })
 

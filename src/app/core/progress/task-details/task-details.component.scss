@@ -1,0 +1,31 @@
+.custom-panel {
+  min-height: 15vh !important;
+  margin: 10px;
+  padding-top: 20px;
+  mat-panel-title {
+    margin-top: 20px;
+  }
+}
+
+span {
+  margin: 5px;
+}
+
+mat-accordion {
+  margin-top: 10px;
+}
+
+.mat-expansion-panel-body {
+  padding: 2px !important;
+}
+
+.mat-expansion-panel-header {
+  padding: 10px 5px !important;
+}
+
+.mat-grid-tile .mat-figure {
+  padding: 5px 10px !important;
+  justify-content: flex-start !important;
+}
+
+

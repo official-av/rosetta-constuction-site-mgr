@@ -2,16 +2,17 @@
   <h5>Progress</h5>
   <div fxLayout="column">
     <mat-accordion *ngIf="tasks&&tasks.length>0;else noResource">
-      <mat-expansion-panel *ngFor="let task of tasks">
+      <mat-expansion-panel *ngFor="let task of tasks" ngClass.lt-md="custom-panel">
         <mat-expansion-panel-header>
           <mat-panel-title>
             {{task.task}}
           </mat-panel-title>
           <mat-panel-description>
             <span>
-            Progress {{task.actual_progress| number : '1.2'}}/{{task.expected_progress| number : '1.2'}} (actual/expected)
+            Progress {{task.actual_progress| number : '1.1'}}/{{task.expected_progress| number : '1.1'}} (actual/expected)
             </span>
-            <button mat-button (click)="modalService.openDialog({id:task.id,progress:task.actual_progress})">
+            <button ngClass.lt-md="pl-0" mat-icon-button
+                    (click)="modalService.openDialog({id:task.id,progress:task.actual_progress})">
               <mat-icon fxFlexAlign="end">edit</mat-icon>
             </button>
           </mat-panel-description>
