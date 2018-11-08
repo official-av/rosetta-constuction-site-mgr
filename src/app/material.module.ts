@@ -33,7 +33,8 @@ import {
     MatSlideToggleModule,
     MatExpansionModule,
     MatDialogModule,
-    MatGridListModule
+    MatGridListModule,
+    MatListModule
   ],
   exports: [
     MatSidenavModule,
@@ -50,7 +51,8 @@ import {
     MatSlideToggleModule,
     MatExpansionModule,
     MatDialogModule,
-    MatGridListModule
+    MatGridListModule,
+    MatListModule
   ]
 })
 

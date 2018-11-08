@@ -6,6 +6,7 @@ import {BehaviorSubject} from 'rxjs';
 import {Machinery} from './models/machinery.model';
 import {Material} from './models/material.model';
 import {Task} from './models/task.model';
+import {Report} from './models/report.model';
 
 @Injectable()
 export class CoreService {
@@ -283,6 +284,18 @@ export class CoreService {
   }
 
   // Report Calls
+  getReport(): Promise<Report> {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url + '/daily-report?site_id=' + this.site_id
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.statusCode === 1) {
+            resolve(result.daily_report);
+          }
+        }, error => reject(error));
+    });
+  }
+
   /*  async getItems(): Promise<any> {
       let labors = await this.fetchLabor()
         .then((result: Array<Labor>) => labors = result)
