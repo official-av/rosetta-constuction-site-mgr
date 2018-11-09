@@ -24,12 +24,4 @@ export class LaborComponent implements OnInit {
       .catch(error => console.log(error));
   }
 
-  deleteLabor(labor: Labor) {
-    if (confirm('Are you sure?')) {
-      this.coreService.deleteLabor(labor)
-        .then(result => this.getLabor())
-        .catch(error => console.log(error));
-    }
-  }
-
 }

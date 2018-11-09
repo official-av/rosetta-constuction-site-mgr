@@ -24,12 +24,4 @@ export class MaterialComponent implements OnInit {
       .catch(error => console.log(error));
   }
 
-  deleteMaterial(mat: Material) {
-    if (confirm('Are you sure?')) {
-      this.coreService.deleteMaterial(mat)
-        .then(result => this.getMaterials())
-        .catch(error => console.log(error));
-    }
-  }
-
 }

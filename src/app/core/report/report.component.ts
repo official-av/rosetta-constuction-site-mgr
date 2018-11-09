@@ -10,14 +10,17 @@ import {Report} from '../models/report.model';
 export class ReportComponent implements OnInit {
   report: Report;
 
+  ngOnInit() {
+  }
+
   constructor(private coreService: CoreService) {
+    this.fetchReport();
+  }
+
+  fetchReport() {
     this.coreService.getReport()
       .then((result: Report) => this.report = result)
       .catch(error => console.log(error));
-  }
-
-
-  ngOnInit() {
   }
 
 }

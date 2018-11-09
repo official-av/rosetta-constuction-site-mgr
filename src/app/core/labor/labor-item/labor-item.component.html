@@ -1,0 +1,15 @@
+<div class="layer" fxLayoutGap="10px">
+  <span fxFlex>{{labor.type}} ({{labor.gender==='M'?'Male':'Female'}})</span>
+  <a role="button" fragment="edit"
+     (click)="deleteLabor(labor)">
+    <mat-icon fxFlexAlign="end">delete</mat-icon>
+  </a>
+  <a role="button" routerLink="../labordetails" fragment="edit"
+     (click)="coreService.current_labor.next(labor)">
+    <mat-icon fxFlexAlign="end">edit</mat-icon>
+  </a>
+</div>
+<div class="layer" fxLayoutGap="10px">
+  <span fxFlex>No. {{labor.number}}</span>
+  <span fxFlexAlign="end">Hourly Rate {{labor.rate}}</span>
+</div>

@@ -4,21 +4,7 @@
   <div fxLayout="column">
     <div *ngIf="machines&&machines.length>0;else noResource">
       <mat-card *ngFor="let machine of machines">
-        <div class="layer" fxLayoutGap="10px">
-          <span fxFlex>{{machine.type}}</span>
-          <a role="button" fragment="edit"
-             (click)="deleteMachinery(machine)">
-            <mat-icon fxFlexAlign="end">delete</mat-icon>
-          </a>
-          <a role="button" routerLink="../machinerydetails" fragment="edit"
-             (click)="coreService.current_machine.next(machine)">
-            <mat-icon fxFlexAlign="end">edit</mat-icon>
-          </a>
-        </div>
-        <div class="layer" fxLayoutGap="10px">
-          <span fxFlex>Available from {{machine.start_date}} till {{machine.end_date}}</span>
-          <span fxFlexAlign="end">Cost {{machine.cost}}</span>
-        </div>
+        <app-machinery-item [machine]="machine"></app-machinery-item>
       </mat-card>
     </div>
     <ng-template #noResource>

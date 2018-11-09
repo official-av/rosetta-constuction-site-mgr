@@ -349,10 +349,10 @@ export class CoreService {
   /*Task Calls*/
   getProgress(): Promise<Array<Task>> {
     return new Promise((resolve, reject) => {
-      this.http.get(environment.api_url + 'get-progress?site_id=' + this.site_id
+      this.http.get(environment.api_url + '/get-progress?site_id=' + this.site_id
         , this.httpOptions)
         .subscribe((result: any) => {
-          if (result.statusCode === 200) {
+          if (result.status_code === 1) {
             resolve(result.progress);
           }
         }, error => reject(error));

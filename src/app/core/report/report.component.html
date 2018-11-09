@@ -31,12 +31,13 @@
           </mat-list>
         </mat-card-content>
       </mat-card>
-      <!--<div> &lt;!&ndash;Labors&ndash;&gt;
+
+      <div> <!--Labors-->
         <h6>Labors</h6>
-        <div *ngIf="activities.labors.length!=0;else noLabors">
-          <ng-container *ngFor="let labor of activities.labors">
+        <div *ngIf="report.activity.labor.length!=0;else noLabors">
+          <ng-container *ngFor="let labor of report.activity.labor">
             <mat-card>
-              <span fxFlex>Added {{labor?.type}} today</span>
+              <app-labor-item [labor]="labor" (onDelete)="fetchReport()"></app-labor-item>
             </mat-card>
           </ng-container>
         </div>
@@ -46,12 +47,12 @@
           </mat-card>
         </ng-template>
       </div>
-      <div> &lt;!&ndash;Materials&ndash;&gt;
+      <div> <!--Materials-->
         <h6>Materials</h6>
-        <div *ngIf="activities.materials.length!=0;else noMats">
-          <ng-container *ngFor="let mat of activities.materials">
+        <div *ngIf="report.activity.material.length!=0;else noMats">
+          <ng-container *ngFor="let mat of report.activity.material">
             <mat-card>
-              <span fxFlex>Added <strong>{{mat?.type}}</strong> today</span>
+              <app-material-item [material]="mat" (onDelete)="fetchReport()"></app-material-item>
             </mat-card>
           </ng-container>
         </div>
@@ -61,12 +62,12 @@
           </mat-card>
         </ng-template>
       </div>
-      <div> &lt;!&ndash;Machinery&ndash;&gt;
+      <div> <!--Machinery-->
         <h6>Machinery</h6>
-        <div *ngIf="activities.machines.length!=0;else noMacs">
-          <ng-container *ngFor="let mac of activities.machines">
+        <div *ngIf="report.activity.machinery.length!=0;else noMacs">
+          <ng-container *ngFor="let mac of report.activity.machinery">
             <mat-card>
-              <span fxFlex>Added <strong>{{mac?.type}}</strong> today</span>
+              <app-machinery-item [machine]="mac" (onDelete)="fetchReport()"></app-machinery-item>
             </mat-card>
           </ng-container>
         </div>
@@ -76,21 +77,6 @@
           </mat-card>
         </ng-template>
       </div>
-      <div> &lt;!&ndash;Schedules&ndash;&gt;
-        <h6>Schedules</h6>
-        <div *ngIf="activities.schedules.length!=0;else noScheds">
-          <ng-container *ngFor="let sched of activities.schedules">
-            <mat-card>
-              <span fxFlex>Added <strong>{{sched?.task}}</strong> today</span>
-            </mat-card>
-          </ng-container>
-        </div>
-        <ng-template #noScheds>
-          <mat-card>
-            <span fxFlex>No Schedules added today</span>
-          </mat-card>
-        </ng-template>
-      </div>  -->
     </div>
   </div>
 </div>

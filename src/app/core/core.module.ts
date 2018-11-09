@@ -16,6 +16,9 @@ import {MaterialDetailsComponent} from './material/material-details/material-det
 import {ProgressComponent} from './progress/progress.component';
 import {TaskDetailsComponent} from './progress/task-details/task-details.component';
 import {EditProgressComponent} from './progress/edit-progress/edit-progress.component';
+import {LaborItemComponent} from './labor/labor-item/labor-item.component';
+import { MaterialItemComponent } from './material/material-item/material-item.component';
+import { MachineryItemComponent } from './machinery/machinery-item/machinery-item.component';
 
 @NgModule({
   imports: [
@@ -38,9 +41,12 @@ import {EditProgressComponent} from './progress/edit-progress/edit-progress.comp
     MaterialDetailsComponent,
     ProgressComponent,
     TaskDetailsComponent,
-    EditProgressComponent],
+    EditProgressComponent,
+    LaborItemComponent,
+    MaterialItemComponent,
+    MachineryItemComponent],
   providers: [CoreService],
-  entryComponents:[EditProgressComponent]
+  entryComponents: [EditProgressComponent]
 })
 
 export class CoreModule {

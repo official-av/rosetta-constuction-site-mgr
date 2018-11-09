@@ -5,22 +5,18 @@ mat-sidenav-container {
   }
   .mat-sidenav-content {
     .container-custom {
-      height: calc(100vh - 56px);
-      /*
-            background-color: #eeeeee;*/
-    }
-
-    .container-desktop {
       padding: 2vh 15vw;
       height: calc(100vh - 64px) !important;
+    }
+    .container-mobile {
+      padding: 0 !important;
+      height: calc(100vh - 56px) !important;
     }
     .home {
       padding: 0;
     }
-
     .def-gap {
       padding: 0 80px;
     }
-
   }
 }

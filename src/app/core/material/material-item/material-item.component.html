@@ -1,0 +1,17 @@
+<div class="layer" fxLayoutGap="10px">
+  <span fxFlex>{{material.type}}</span>
+  <a role="button" fragment="edit"
+     (click)="deleteMaterial(material)">
+    <mat-icon fxFlexAlign="end">delete</mat-icon>
+  </a>
+  <a role="button" routerLink="../materialdetails" fragment="edit"
+     (click)="coreService.current_material.next(material)">
+    <mat-icon fxFlexAlign="end">edit</mat-icon>
+  </a>
+</div>
+<div class="layer" fxLayoutGap="10px">
+  <span fxFlex>Total Quantity: {{material.quantity}}</span>
+  <span fxFlex>Status: {{material.in_vs_out===1?"Arrived":"Used"}}</span>
+  <span fxFlexAlign="end">Cost {{material.cost}}</span>
+</div>
+<!-- TODO : Add images component-->

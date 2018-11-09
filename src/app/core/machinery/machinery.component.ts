@@ -23,12 +23,4 @@ export class MachineryComponent implements OnInit {
       .catch(error => console.log(error));
   }
 
-  deleteMachinery(mc: Machinery) {
-    if (confirm('Are you sure?')) {
-      this.coreService.deleteMachinery(mc)
-        .then(result => this.getMachinery())
-        .catch(error => console.log(error));
-    }
-  }
-
 }
