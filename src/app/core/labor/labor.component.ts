@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Labor} from '../models/labor.model';
 import {CoreService} from '../core.service';
+import {Labor2} from '../models/newlabor.model';
 
 @Component({
   selector: 'app-labor',
@@ -9,7 +10,7 @@ import {CoreService} from '../core.service';
 })
 
 export class LaborComponent implements OnInit {
-  labors: Array<Labor> = [];
+  labors: Array<Labor2> = [];
 
   constructor(public coreService: CoreService) {
   }
@@ -20,7 +21,7 @@ export class LaborComponent implements OnInit {
 
   getLabor() {
     this.coreService.fetchLabor()
-      .then((result: Array<Labor>) => this.labors = result)
+      .then((result: Array<Labor2>) => this.labors = result)
       .catch(error => console.log(error));
   }
 

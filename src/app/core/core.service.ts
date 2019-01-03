@@ -1,17 +1,17 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Labor} from './models/labor.model';
 import {environment} from '../../environments/environment';
 import {BehaviorSubject} from 'rxjs';
 import {Machinery} from './models/machinery.model';
 import {Material} from './models/material.model';
 import {Task} from './models/task.model';
 import {Report} from './models/report.model';
+import {Labor2} from './models/newlabor.model';
 
 @Injectable()
 export class CoreService {
   site_id = 1;
-  current_labor = new BehaviorSubject(new Labor());
+  current_labor = new BehaviorSubject(new Labor2());
   current_machine = new BehaviorSubject(new Machinery());
   current_material = new BehaviorSubject(new Material());
   // current_task = new BehaviorSubject(new task());
@@ -25,7 +25,7 @@ export class CoreService {
   }
 
   /*Labor calls*/
-  fetchLabor(): Promise<Array<Labor>> {
+  fetchLabor(): Promise<Array<Labor2>> {
     return new Promise((resolve, reject) => {
       this.http.get(environment.api_url + '/get-labor?site_id=' + this.site_id
         , this.httpOptions)
@@ -37,14 +37,17 @@ export class CoreService {
     });
   }
 
-  addLabor(labor: Labor) {
+  addLabor(labor: Labor2) {
     return new Promise((resolve, reject) => {
       this.http.get(environment.api_url
-        + '/insert-labor?site_id=' + this.site_id
-        + '&labor_type=' + labor.type
-        + '&number=' + labor.number
-        + '&wage_per_person=' + labor.rate
-        + '&gender=' + labor.gender
+        + '/add-labor?site_id=' + this.site_id
+        + '&type=' + labor.type
+        + '&daily=' + labor.daily
+        + '&male_count=' + labor.male_count
+        + '&female_count=' + labor.female_count
+        + '&male_rate=' + labor.male_rate
+        + '&female_rate=' + labor.female_rate
+        + '&work_done=' + labor.work_done
         , this.httpOptions)
         .subscribe((result: any) => {
           if (result.status_code === 1) {
@@ -54,15 +57,18 @@ export class CoreService {
     });
   }
 
-  editLabor(labor: Labor) {
+  editLabor(labor: Labor2) {
     return new Promise((resolve, reject) => {
       this.http.get(environment.api_url
         + '/edit-labor?site_id=' + this.site_id
+        + '&type=' + labor.type
+        + '&daily=' + labor.daily
+        + '&male_count=' + labor.male_count
+        + '&female_count=' + labor.female_count
+        + '&male_rate=' + labor.male_rate
+        + '&female_rate=' + labor.female_rate
+        + '&work_done=' + labor.work_done
         + '&id=' + labor.id
-        + '&labor_type=' + labor.type
-        + '&wage_per_person=' + labor.rate
-        + '&number=' + labor.number
-        + '&gender=' + labor.gender
         , this.httpOptions)
         .subscribe((result: any) => {
           if (result.status_code === 1) {
@@ -72,7 +78,7 @@ export class CoreService {
     });
   }
 
-  deleteLabor(labor: Labor) {
+  deleteLabor(labor: Labor2) {
     return new Promise((resolve, reject) => {
       this.http.get(environment.api_url + '/delete-labor'
         + '?id=' + labor.id
@@ -81,6 +87,21 @@ export class CoreService {
         .subscribe((result: any) => {
           if (result.status_code === 1) {
             resolve('success');
+          }
+        }, error => reject(error));
+    });
+  }
+
+  getLaborReport(start_date: string, end_date: string): Promise<Array<Labor2>> {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url + '/get-labor-report'
+        + '&site_id=' + this.site_id
+        + '&start_date=' + start_date
+        + '&end_date=' + end_date
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            resolve(result.details);
           }
         }, error => reject(error));
     });

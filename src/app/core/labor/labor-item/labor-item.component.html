@@ -1,5 +1,5 @@
 <div class="layer" fxLayoutGap="10px">
-  <span fxFlex>{{labor.type}} ({{labor.gender==='M'?'Male':'Female'}})</span>
+  <span fxFlex>{{labor.type}}</span>
   <a role="button" fragment="edit"
      (click)="deleteLabor(labor)">
     <mat-icon fxFlexAlign="end">delete</mat-icon>
@@ -10,6 +10,6 @@
   </a>
 </div>
 <div class="layer" fxLayoutGap="10px">
-  <span fxFlex>No. {{labor.number}}</span>
-  <span fxFlexAlign="end">Hourly Rate {{labor.rate}}</span>
+  <span fxFlex>Number {{labor.male_count + labor.female_count}}</span>
+  <span fxFlexAlign="end">Rate {{labor.male_rate + labor.female_rate}}</span>
 </div>

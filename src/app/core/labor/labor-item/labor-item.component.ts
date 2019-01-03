@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Labor} from '../../models/labor.model';
 import {CoreService} from '../../core.service';
+import {Labor2} from '../../models/newlabor.model';
 
 @Component({
   selector: 'app-labor-item',
@@ -8,7 +8,7 @@ import {CoreService} from '../../core.service';
   styleUrls: ['./labor-item.component.scss']
 })
 export class LaborItemComponent implements OnInit {
-  @Input() labor: Labor;
+  @Input() labor: Labor2;
   @Output() onDelete = new EventEmitter();
 
   constructor(public coreService: CoreService) {
@@ -17,7 +17,7 @@ export class LaborItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  deleteLabor(labor: Labor) {
+  deleteLabor(labor: Labor2) {
     if (confirm('Are you sure?')) {
       this.coreService.deleteLabor(labor)
         .then(result => console.log(result))
