@@ -9,6 +9,7 @@ import {MachineryDetailsComponent} from './core/machinery/machinery-details/mach
 import {MaterialComponent} from './core/material/material.component';
 import {MaterialDetailsComponent} from './core/material/material-details/material-details.component';
 import {ProgressComponent} from './core/progress/progress.component';
+import {AdminComponent} from './core/admin/admin.component';
 
 const routes: Routes = [
   {path: '', component: WelcomeComponent},
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path: 'materialdetails', component: MaterialDetailsComponent},
   {path: 'progress', component: ProgressComponent},
   // {path: 'scheduledetails', component: ScheduleDetailsComponent},
-  {path: 'report', component: ReportComponent}
+  {path: 'report', component: ReportComponent},
+  {path: 'admin', component: AdminComponent}
 ];
 
 @NgModule({

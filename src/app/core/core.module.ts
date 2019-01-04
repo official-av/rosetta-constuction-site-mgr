@@ -19,6 +19,7 @@ import {EditProgressComponent} from './progress/edit-progress/edit-progress.comp
 import {LaborItemComponent} from './labor/labor-item/labor-item.component';
 import { MaterialItemComponent } from './material/material-item/material-item.component';
 import { MachineryItemComponent } from './machinery/machinery-item/machinery-item.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { MachineryItemComponent } from './machinery/machinery-item/machinery-ite
     EditProgressComponent,
     LaborItemComponent,
     MaterialItemComponent,
-    MachineryItemComponent],
+    MachineryItemComponent,
+    AdminComponent],
   providers: [CoreService],
   entryComponents: [EditProgressComponent]
 })

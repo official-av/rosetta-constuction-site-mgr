@@ -5,6 +5,12 @@
     <mat-icon>home</mat-icon>
     <span class="nav-caption">Home</span>
   </a>
+  <a mat-list-item [routerLink]="'admin'" [routerLinkActive]="'active'"
+     [routerLinkActiveOptions]="{'exact':'true'}"
+     (click)="closeSidenav()">
+    <mat-icon>face</mat-icon>
+    <span class="nav-caption">Admin</span>
+  </a>
   <!--<a *ngIf="authService.isAuthenticated()" mat-list-item routerLink="profile" [routerLinkActive]="'active'"
      [routerLinkActiveOptions]="{'exact':'true'}"
      (click)="closeSidenav()">-->
@@ -27,7 +33,7 @@
     <mat-icon>person</mat-icon>
     <span class="nav-caption">Labor</span>
   </a>
-  <a mat-list-item routerLink="machinery" (click)="closeSidenav()" [routerLinkActive]="'active'"
+  <!--<a mat-list-item routerLink="machinery" (click)="closeSidenav()" [routerLinkActive]="'active'"
      [routerLinkActiveOptions]="{'exact':'true'}">
     <mat-icon>local_shipping</mat-icon>
     <span class="nav-caption">Machinery</span>
@@ -46,7 +52,7 @@
      [routerLinkActiveOptions]="{'exact':'true'}">
     <mat-icon>equalizer</mat-icon>
     <span class="nav-caption">Report</span>
-  </a>
+  </a>-->
   <!--<a *ngIf="authService.isAuthenticated()" mat-list-item (click)="closeSidenav();authService.logout()">
     <mat-icon>visibility_off</mat-icon>
     <span class="nav-caption">Logout</span></a>-->
