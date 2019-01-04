@@ -59,6 +59,7 @@ export class LaborDetailsComponent implements OnInit, OnDestroy {
       this.labor.male_count = this.laborForm.value.m_count;
       this.labor.female_count = this.laborForm.value.f_count;
       this.labor.work_done = this.laborForm.value.work_done;
+      console.log(this.labor);
       this.coreService.addLabor(this.labor)
         .then(result => console.log(result))
         .then(() => {
@@ -85,6 +86,15 @@ export class LaborDetailsComponent implements OnInit, OnDestroy {
 
   toggleCategory() {
     this.category = !this.category;
+  }
+
+  deleteLabor() {
+    if (confirm('Are you sure?')) {
+      this.coreService.deleteLabor(this.labor)
+        .then(result => console.log(result))
+        .then(() => this.cancel())
+        .catch(error => console.log(error));
+    }
   }
 
   ngOnDestroy() {

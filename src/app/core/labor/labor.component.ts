@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Labor} from '../models/labor.model';
 import {CoreService} from '../core.service';
 import {Labor2} from '../models/newlabor.model';
 
@@ -17,6 +16,7 @@ export class LaborComponent implements OnInit {
 
   ngOnInit() {
     this.getLabor();
+    console.log(this.labors);
   }
 
   getLabor() {

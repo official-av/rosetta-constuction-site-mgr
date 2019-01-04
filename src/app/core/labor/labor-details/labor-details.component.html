@@ -12,47 +12,51 @@
 
         <div class="mb-3" style="color:grey;" fxLayoutGap="5px">
           <span>{{category ? 'Maintenance' : 'Daily'}}</span>
-          <mat-slide-toggle [checked]="category" (change)="toggleCategory()"></mat-slide-toggle>
+          <mat-slide-toggle [checked]="category" formControlName="category"
+                            (change)="toggleCategory()"></mat-slide-toggle>
         </div>
 
         <mat-form-field>
           <input matInput formControlName="type" placeholder="Type">
         </mat-form-field>
-
-        <mat-grid-list cols="2" rowHeight="2:1">
-          <mat-grid-tile>
+        <div fxLayout="row">
+          <div fxLayout="column" class="details">
+            <span fxFlex>Male Details</span>
             <mat-form-field>
-              <input matInput formControlName="m_count" placeholder="Male Count">
+              <input matInput formControlName="m_count" placeholder="Count">
             </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
             <mat-form-field>
-              <input matInput formControlName="f_count" placeholder="Female Count">
+              <input matInput formControlName="m_rate" placeholder="Rate">
             </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
+          </div>
+          <div fxLayout="column" class="details">
+            <span fxFlex>Female Details</span>
             <mat-form-field>
-              <input matInput formControlName="m_rate" placeholder="Male Rate">
+              <input matInput formControlName="f_count" placeholder="Count">
             </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
             <mat-form-field>
-              <input matInput formControlName="f_rate" placeholder="Female Rate">
+              <input matInput formControlName="f_rate" placeholder="Rate">
             </mat-form-field>
-          </mat-grid-tile>
-        </mat-grid-list>
+          </div>
+        </div>
 
         <mat-form-field>
           <textarea matInput formControlName="work_done" placeholder="Work Done"></textarea>
         </mat-form-field>
-        <button type="button" mat-raised-button>Receipt
-        </button>
-        <button type="submit" mat-raised-button [ngClass]="{'custom-btn':laborForm.valid}"
-                [disabled]="!laborForm.valid">Save
-        </button>
-        <button type="submit" mat-raised-button [ngClass]="{'custom-btn':laborForm.valid}"
-                [disabled]="mode==='add'">Delete
-        </button>
+        <div fxLayout="row">
+          <div fxFlex>
+            <button type="button" class="custom-btn" mat-mini-fab>
+              <mat-icon>attach_file</mat-icon>
+            </button>
+          </div>
+          <div fxLayoutGap="5px">
+            <button type="submit" mat-raised-button class="custom-btn">Save</button>
+            <button type="button" mat-mini-fab [disabled]="mode==='add'" class="custom-btn"
+                    (click)="deleteLabor()">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
       </form>
     </mat-card-content>
   </mat-card>

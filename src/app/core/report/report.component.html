@@ -1,3 +1,4 @@
+<!--
 <div class="content">
   <div class="activity">
     <h5>Daily Report</h5>
@@ -32,7 +33,7 @@
         </mat-card-content>
       </mat-card>
 
-      <div> <!--Labors-->
+      <div> &lt;!&ndash;Labors&ndash;&gt;
         <h6>Labors</h6>
         <div *ngIf="report.activity.labor.length!=0;else noLabors">
           <ng-container *ngFor="let labor of report.activity.labor">
@@ -47,7 +48,7 @@
           </mat-card>
         </ng-template>
       </div>
-      <div> <!--Materials-->
+      <div> &lt;!&ndash;Materials&ndash;&gt;
         <h6>Materials</h6>
         <div *ngIf="report.activity.material.length!=0;else noMats">
           <ng-container *ngFor="let mat of report.activity.material">
@@ -62,7 +63,7 @@
           </mat-card>
         </ng-template>
       </div>
-      <div> <!--Machinery-->
+      <div> &lt;!&ndash;Machinery&ndash;&gt;
         <h6>Machinery</h6>
         <div *ngIf="report.activity.machinery.length!=0;else noMacs">
           <ng-container *ngFor="let mac of report.activity.machinery">
@@ -80,3 +81,4 @@
     </div>
   </div>
 </div>
+-->

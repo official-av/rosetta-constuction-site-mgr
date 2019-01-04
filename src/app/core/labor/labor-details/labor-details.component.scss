@@ -5,20 +5,26 @@
     color: white;
     background-color: $primary;
   }
+
   .back-btn {
     margin-bottom: 10px;
   }
+
   padding-top: 30px;
+
   h5 {
     padding: 10px 20px
   }
+
   mat-card {
     .icon {
       padding-top: 8px;
     }
+
     span {
       padding-top: 10px;
     }
+
     padding: 10px;
     margin: 10px 20px;
   }
@@ -27,5 +33,14 @@
 .layer {
   span {
     font-size: 16px;
+  }
+}
+
+.details {
+  margin: auto;
+  padding: 5px;
+
+  mat-form-field {
+    width: 50% !important;
   }
 }

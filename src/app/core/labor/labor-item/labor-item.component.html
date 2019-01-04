@@ -1,15 +1,15 @@
 <div class="layer" fxLayoutGap="10px">
   <span fxFlex>{{labor.type}}</span>
-  <a role="button" fragment="edit"
+  <!--<a role="button" fragment="edit"
      (click)="deleteLabor(labor)">
     <mat-icon fxFlexAlign="end">delete</mat-icon>
-  </a>
+  </a>-->
   <a role="button" routerLink="../labordetails" fragment="edit"
      (click)="coreService.current_labor.next(labor)">
     <mat-icon fxFlexAlign="end">edit</mat-icon>
   </a>
 </div>
 <div class="layer" fxLayoutGap="10px">
-  <span fxFlex>Number {{labor.male_count + labor.female_count}}</span>
-  <span fxFlexAlign="end">Rate {{labor.male_rate + labor.female_rate}}</span>
+  <span fxFlex>Count {{labor.male_count + labor.female_count}}</span>
+  <span fxFlexAlign="end">Rate {{labor.total}}</span>
 </div>

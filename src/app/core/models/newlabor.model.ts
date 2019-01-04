@@ -10,6 +10,7 @@ export class Labor2 {
   receipt?: string;
   last_updated?: string;
   date?: string;
+  total?: string;
 
   constructor() {
     this.type = 'General';

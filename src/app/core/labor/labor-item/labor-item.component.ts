@@ -9,7 +9,8 @@ import {Labor2} from '../../models/newlabor.model';
 })
 export class LaborItemComponent implements OnInit {
   @Input() labor: Labor2;
-  @Output() onDelete = new EventEmitter();
+
+  /*@Output() onDelete = new EventEmitter();*/
 
   constructor(public coreService: CoreService) {
   }
@@ -17,13 +18,13 @@ export class LaborItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  deleteLabor(labor: Labor2) {
+  /*deleteLabor(labor: Labor2) {
     if (confirm('Are you sure?')) {
       this.coreService.deleteLabor(labor)
         .then(result => console.log(result))
         .then(() => this.onDelete.emit())
         .catch(error => console.log(error));
     }
-  }
+  }*/
 
 }
