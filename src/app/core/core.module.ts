@@ -20,6 +20,7 @@ import {LaborItemComponent} from './labor/labor-item/labor-item.component';
 import { MaterialItemComponent } from './material/material-item/material-item.component';
 import { MachineryItemComponent } from './machinery/machinery-item/machinery-item.component';
 import { AdminComponent } from './admin/admin.component';
+import { LaborReportComponent } from './labor/labor-report/labor-report.component';
 
 @NgModule({
   imports: [
@@ -46,7 +47,8 @@ import { AdminComponent } from './admin/admin.component';
     LaborItemComponent,
     MaterialItemComponent,
     MachineryItemComponent,
-    AdminComponent],
+    AdminComponent,
+    LaborReportComponent],
   providers: [CoreService],
   entryComponents: [EditProgressComponent]
 })

@@ -1,4 +1,5 @@
 export class Labor2 {
+  site_id?: number;
   id?: number;
   type: string;
   daily: number;
@@ -10,7 +11,7 @@ export class Labor2 {
   receipt?: string;
   last_updated?: string;
   date?: string;
-  total?: string;
+  total?: number;
 
   constructor() {
     this.type = 'General';

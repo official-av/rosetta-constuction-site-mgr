@@ -102,7 +102,8 @@ export class CoreService {
         , this.httpOptions)
         .subscribe((result: any) => {
           if (result.status_code === 1) {
-            resolve(result.details);
+            const obj = result.labor_info;
+            resolve(obj[0].details);
           }
         }, error => reject(error));
     });

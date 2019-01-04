@@ -14,7 +14,8 @@ import {
   MatRadioModule,
   MatSidenavModule,
   MatSlideToggleModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatTableModule
 } from '@angular/material';
 
 @NgModule({
@@ -34,7 +35,8 @@ import {
     MatExpansionModule,
     MatDialogModule,
     MatGridListModule,
-    MatListModule
+    MatListModule,
+    MatTableModule
   ],
   exports: [
     MatSidenavModule,
@@ -52,7 +54,8 @@ import {
     MatExpansionModule,
     MatDialogModule,
     MatGridListModule,
-    MatListModule
+    MatListModule,
+    MatTableModule
   ]
 })
 
