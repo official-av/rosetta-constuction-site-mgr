@@ -1,0 +1,19 @@
+﻿step 1: MODIFY MAIN.TS
+let onDeviceReady = () => {
+  platformBrowserDynamic().bootstrapModule(AppModule);
+};
+document.addEventListener('deviceready', onDeviceReady, false);
+
+step 2: BUILD CODE AND ADD TO WWW OF CORDOVA APP
+ng build --prod --base-href . --output-path ../CordovaMobileApp/www/
+
+step 3: ADD THIS LINE TO INDEX.HTML
+<script type=”text/javascript” src=”cordova.js”></script>
+
+step 4: BUILD ANDROID APP WITH THIS COMMAND	
+cordova build android
+
+
+links:
+cordova setup: https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#requirements-and-support
+how to ng 2 cordova: https://medium.com/@EliaPalme/how-to-wrap-an-angular-app-with-apache-cordova-909024a25d79

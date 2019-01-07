@@ -1,84 +1,13 @@
-<!--
 <div class="content">
   <div class="activity">
-    <h5>Daily Report</h5>
-    <div fxLayoutGap="10px" fxLayout.lt-md="column" *ngIf="report">
+    <h5 *ngIf="mode==='history'">{{mode|titlecase}}</h5>
+    <div fxLayoutGap="10px" fxLayout.lt-md="column">
       <mat-card>
-        <mat-card-title>Report for {{report.date}}</mat-card-title>
+        <mat-card-title *ngIf="mode==='history'">Report for {{start_date}} till {{end_date}}</mat-card-title>
         <mat-card-content>
-          <mat-list>
-            <mat-list-item>
-              <mat-icon mat-list-icon>local_atm
-              </mat-icon>
-              <h4 mat-line>Total Cost</h4>
-              <p mat-line>{{report.cost.total}}</p>
-            </mat-list-item>
-            <h3 mat-subheader>Categories</h3>
-            <mat-list-item>
-              <mat-icon mat-list-icon>gavel</mat-icon>
-              <h4 mat-line>Material Cost</h4>
-              <p mat-line>{{report.cost.material}}</p>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-icon mat-list-icon>person</mat-icon>
-              <h4 mat-line>Labor Cost</h4>
-              <p mat-line>{{report.cost.labor}}</p>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-icon mat-list-icon>local_shipping</mat-icon>
-              <h4 mat-line>Machinery Cost</h4>
-              <p mat-line>{{report.cost.machinery}}</p>
-            </mat-list-item>
-          </mat-list>
+          <app-labor-report [start_date]="start_date" [end_date]="end_date"></app-labor-report>
         </mat-card-content>
       </mat-card>
-
-      <div> &lt;!&ndash;Labors&ndash;&gt;
-        <h6>Labors</h6>
-        <div *ngIf="report.activity.labor.length!=0;else noLabors">
-          <ng-container *ngFor="let labor of report.activity.labor">
-            <mat-card>
-              <app-labor-item [labor]="labor" (onDelete)="fetchReport()"></app-labor-item>
-            </mat-card>
-          </ng-container>
-        </div>
-        <ng-template #noLabors>
-          <mat-card>
-            <span fxFlex>No Labors added today</span>
-          </mat-card>
-        </ng-template>
-      </div>
-      <div> &lt;!&ndash;Materials&ndash;&gt;
-        <h6>Materials</h6>
-        <div *ngIf="report.activity.material.length!=0;else noMats">
-          <ng-container *ngFor="let mat of report.activity.material">
-            <mat-card>
-              <app-material-item [material]="mat" (onDelete)="fetchReport()"></app-material-item>
-            </mat-card>
-          </ng-container>
-        </div>
-        <ng-template #noMats>
-          <mat-card>
-            <span fxFlex>No Materials added today</span>
-          </mat-card>
-        </ng-template>
-      </div>
-      <div> &lt;!&ndash;Machinery&ndash;&gt;
-        <h6>Machinery</h6>
-        <div *ngIf="report.activity.machinery.length!=0;else noMacs">
-          <ng-container *ngFor="let mac of report.activity.machinery">
-            <mat-card>
-              <app-machinery-item [machine]="mac" (onDelete)="fetchReport()"></app-machinery-item>
-            </mat-card>
-          </ng-container>
-        </div>
-        <ng-template #noMacs>
-          <mat-card>
-            <span fxFlex>No Machinery added today</span>
-          </mat-card>
-        </ng-template>
-      </div>
     </div>
   </div>
 </div>
--->

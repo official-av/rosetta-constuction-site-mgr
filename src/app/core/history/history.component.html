@@ -1,0 +1,20 @@
+<div class="content">
+  <h5>Get Site History</h5>
+  <mat-card class="resource">
+    <mat-card-content fxLayout="column">
+      <mat-form-field>
+        <input matInput name="start_date" [matDatepicker]="picker_start" placeholder="Choose a Start date"
+               [(ngModel)]="start_date">
+        <mat-datepicker-toggle matSuffix [for]="picker_start"></mat-datepicker-toggle>
+        <mat-datepicker #picker_start></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="end_date" [matDatepicker]="picker_end" placeholder="Choose an End date"
+               [(ngModel)]="end_date">
+        <mat-datepicker-toggle matSuffix [for]="picker_end"></mat-datepicker-toggle>
+        <mat-datepicker #picker_end></mat-datepicker>
+      </mat-form-field>
+      <button type="submit" (click)="onSubmit()" mat-raised-button class="custom-btn">Fetch</button>
+    </mat-card-content>
+  </mat-card>
+</div>

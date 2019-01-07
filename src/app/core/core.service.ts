@@ -7,6 +7,7 @@ import {Material} from './models/material.model';
 import {Task} from './models/task.model';
 import {Report} from './models/report.model';
 import {Labor2} from './models/newlabor.model';
+import {LaborHistory} from './interfaces/laborHistory.interface';
 
 @Injectable()
 export class CoreService {
@@ -93,7 +94,7 @@ export class CoreService {
     });
   }
 
-  getLaborReport(start_date: string, end_date: string): Promise<Array<Labor2>> {
+  getLaborReport(start_date: string, end_date: string): Promise<Array<LaborHistory>> {
     return new Promise((resolve, reject) => {
       this.http.get(environment.api_url + '/get-labor-report'
         + '&site_id=' + this.site_id
@@ -102,8 +103,8 @@ export class CoreService {
         , this.httpOptions)
         .subscribe((result: any) => {
           if (result.status_code === 1) {
-            const obj = result.labor_info;
-            resolve(obj[0].details);
+            const obj: Array<LaborHistory> = result.labor_info;
+            resolve(obj);
           }
         }, error => reject(error));
     });
@@ -380,7 +381,6 @@ export class CoreService {
           }
         }, error => reject(error));
     });
-
   }
 
   editProgress(id: number, actual_progress: number) {

@@ -1,0 +1,9 @@
+.table-container {
+  max-height: 55vh !important;
+  overflow: auto;
+
+  .custom-table {
+    height: 100%;
+    width: 100%;
+  }
+}
