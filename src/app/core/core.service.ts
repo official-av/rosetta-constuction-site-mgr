@@ -97,13 +97,14 @@ export class CoreService {
   getLaborReport(start_date: string, end_date: string): Promise<Array<LaborHistory>> {
     return new Promise((resolve, reject) => {
       this.http.get(environment.api_url + '/get-labor-report'
-        + '&site_id=' + this.site_id
+        + '?site_id=' + this.site_id
         + '&start_date=' + start_date
         + '&end_date=' + end_date
         , this.httpOptions)
         .subscribe((result: any) => {
           if (result.status_code === 1) {
             const obj: Array<LaborHistory> = result.labor_info;
+            console.log(obj);
             resolve(obj);
           }
         }, error => reject(error));

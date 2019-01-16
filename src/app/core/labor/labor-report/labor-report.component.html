@@ -1,9 +1,9 @@
 <div>
   <h6>Labor</h6>
-  <div *ngFor="let obj of labors">
-    <span>{{obj.date}}</span>
-    <div class="table-container">
-      <table mat-table [dataSource]="obj" class="custom-table">
+  <div *ngFor="let obj of labors" class="custom-div">
+    <span *ngIf="obj.details.length>0">{{obj.date| date}}</span>
+    <div *ngIf="obj.details.length>0" class="table-container">
+      <table mat-table [dataSource]="obj.details" class="custom-table">
 
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->

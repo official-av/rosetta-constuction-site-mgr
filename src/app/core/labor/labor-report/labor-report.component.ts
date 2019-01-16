@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Labor2} from '../../models/newlabor.model';
 import {CoreService} from '../../core.service';
 import {LaborHistory} from '../../interfaces/laborHistory.interface';
 
