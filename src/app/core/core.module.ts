@@ -22,6 +22,10 @@ import { MachineryItemComponent } from './machinery/machinery-item/machinery-ite
 import { AdminComponent } from './admin/admin.component';
 import { LaborReportComponent } from './labor/labor-report/labor-report.component';
 import { HistoryComponent } from './history/history.component';
+import { DieselComponent } from './diesel/diesel.component';
+import { DieselDetailsComponent } from './diesel/diesel-details/diesel-details.component';
+import { DieselItemComponent } from './diesel/diesel-item/diesel-item.component';
+import { DieselReportComponent } from './diesel/diesel-report/diesel-report.component';
 
 @NgModule({
   imports: [
@@ -50,7 +54,11 @@ import { HistoryComponent } from './history/history.component';
     MachineryItemComponent,
     AdminComponent,
     LaborReportComponent,
-    HistoryComponent],
+    HistoryComponent,
+    DieselComponent,
+    DieselDetailsComponent,
+    DieselItemComponent,
+    DieselReportComponent],
   providers: [CoreService],
   entryComponents: [EditProgressComponent]
 })

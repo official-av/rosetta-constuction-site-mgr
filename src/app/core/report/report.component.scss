@@ -11,8 +11,8 @@
     padding: 10px 20px
   }
 
-  mat-card {
-    padding: 10px 20px !important;
+  mat-accordion {
+    /*padding: 10px 20px !important;
 
     .icon {
       padding-top: 8px;
@@ -20,8 +20,11 @@
 
     span {
       padding-top: 10px;
-    }
+    }*/
+    margin: 10px;
+  }
 
-    margin: 10px 20px;
+  .custom-width {
+    min-width: 100%;
   }
 }

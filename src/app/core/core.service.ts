@@ -8,11 +8,14 @@ import {Task} from './models/task.model';
 import {Report} from './models/report.model';
 import {Labor2} from './models/newlabor.model';
 import {LaborHistory} from './interfaces/laborHistory.interface';
+import {Diesel} from './models/diesel.model';
+import {DieselHistory} from './interfaces/dieselHistory.interface';
 
 @Injectable()
 export class CoreService {
   site_id = 1;
   current_labor = new BehaviorSubject(new Labor2());
+  current_diesel = new BehaviorSubject(new Diesel());
   current_machine = new BehaviorSubject(new Machinery());
   current_material = new BehaviorSubject(new Material());
   // current_task = new BehaviorSubject(new task());
@@ -104,6 +107,84 @@ export class CoreService {
         .subscribe((result: any) => {
           if (result.status_code === 1) {
             const obj: Array<LaborHistory> = result.labor_info;
+            console.log(obj);
+            resolve(obj);
+          }
+        }, error => reject(error));
+    });
+  }
+
+  /*Diesel Calls*/
+  fetchDiesel(): Promise<Array<Diesel>> {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url + '/get-diesel?site_id=' + this.site_id
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            const obj = result.diesel_info;
+            resolve(obj[0].details);
+          }
+        }, error => reject(error));
+    });
+  }
+
+  addDiesel(diesel: Diesel) {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url
+        + '/add-diesel?site_id=' + this.site_id
+        + '&vehicle_no=' + diesel.vehicle_no
+        + '&litres=' + diesel.litres
+        + '&comment=' + diesel.comment
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            resolve('success');
+          }
+        }, error => reject(error));
+    });
+  }
+
+  editDiesel(diesel: Diesel) {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url
+        + '/edit-diesel?site_id=' + this.site_id
+        + '&vehicle_no=' + diesel.vehicle_no
+        + '&litres=' + diesel.litres
+        + '&comment=' + diesel.comment
+        + '&id=' + diesel.id
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            resolve('success');
+          }
+        }, error => reject(error));
+    });
+  }
+
+  deleteDiesel(diesel: Diesel) {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url + '/delete-diesel'
+        + '?id=' + diesel.id
+        + '&site_id=' + this.site_id
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            resolve('success');
+          }
+        }, error => reject(error));
+    });
+  }
+
+  getDieselReport(start_date: string, end_date: string): Promise<Array<DieselHistory>> {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url + '/get-diesel-report'
+        + '?site_id=' + this.site_id
+        + '&start_date=' + start_date
+        + '&end_date=' + end_date
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            const obj: Array<DieselHistory> = result.diesel_info;
             console.log(obj);
             resolve(obj);
           }

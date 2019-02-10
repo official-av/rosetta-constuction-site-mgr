@@ -5,12 +5,12 @@
     <mat-icon>home</mat-icon>
     <span class="nav-caption">Home</span>
   </a>
-  <!--<a mat-list-item [routerLink]="'admin'" [routerLinkActive]="'active'"
+  <a mat-list-item [routerLink]="'admin'" [routerLinkActive]="'active'"
      [routerLinkActiveOptions]="{'exact':'true'}"
      (click)="closeSidenav()">
     <mat-icon>face</mat-icon>
     <span class="nav-caption">Admin</span>
-  </a>-->
+  </a>
   <!--<a *ngIf="authService.isAuthenticated()" mat-list-item routerLink="profile" [routerLinkActive]="'active'"
      [routerLinkActiveOptions]="{'exact':'true'}"
      (click)="closeSidenav()">-->
@@ -28,11 +28,16 @@
     <mat-icon>verified_user</mat-icon>
     <span class="nav-caption">Register</span>
   </a>-->
-  <a mat-list-item routerLink="labor" (click)="closeSidenav()" [routerLinkActive]="'active'"
+  <!--<a mat-list-item routerLink="labor" (click)="closeSidenav()" [routerLinkActive]="'active'"
      [routerLinkActiveOptions]="{'exact':'true'}">
     <mat-icon>person</mat-icon>
     <span class="nav-caption">Labor</span>
   </a>
+  <a mat-list-item routerLink="diesel" (click)="closeSidenav()" [routerLinkActive]="'active'"
+     [routerLinkActiveOptions]="{'exact':'true'}">
+    <mat-icon>opacity</mat-icon>
+    <span class="nav-caption">Diesel</span>
+  </a>-->
   <!--<a mat-list-item routerLink="machinery" (click)="closeSidenav()" [routerLinkActive]="'active'"
      [routerLinkActiveOptions]="{'exact':'true'}">
     <mat-icon>local_shipping</mat-icon>

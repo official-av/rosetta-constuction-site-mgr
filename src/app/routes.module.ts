@@ -11,11 +11,15 @@ import {MaterialDetailsComponent} from './core/material/material-details/materia
 import {ProgressComponent} from './core/progress/progress.component';
 import {AdminComponent} from './core/admin/admin.component';
 import {HistoryComponent} from './core/history/history.component';
+import {DieselComponent} from './core/diesel/diesel.component';
+import {DieselDetailsComponent} from './core/diesel/diesel-details/diesel-details.component';
 
 const routes: Routes = [
   {path: '', component: WelcomeComponent},
   {path: 'labor', component: LaborComponent},
   {path: 'labordetails', component: LaborDetailsComponent},
+  {path: 'diesel', component: DieselComponent},
+  {path: 'dieseldetails', component: DieselDetailsComponent},
   {path: 'machinery', component: MachineryComponent},
   {path: 'machinerydetails', component: MachineryDetailsComponent},
   {path: 'materials', component: MaterialComponent},

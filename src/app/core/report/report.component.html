@@ -2,12 +2,36 @@
   <div class="activity">
     <h5 *ngIf="mode==='history'">{{mode|titlecase}}</h5>
     <div fxLayoutGap="10px" fxLayout.lt-md="column">
-      <mat-card>
-        <mat-card-title *ngIf="mode==='history'">Report for {{start_date}} till {{end_date}}</mat-card-title>
-        <mat-card-content>
+
+      <mat-accordion ngClass.gt-sm="custom-width">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Labor
+            </mat-panel-title>
+            <mat-panel-description *ngIf="mode==='history'">
+              {{start_date}} till {{end_date}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
           <app-labor-report [start_date]="start_date" [end_date]="end_date"></app-labor-report>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Diesel
+            </mat-panel-title>
+            <mat-panel-description *ngIf="mode==='history'">
+              {{start_date}} till {{end_date}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-diesel-report [start_date]="start_date" [end_date]="end_date"></app-diesel-report>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <!--<mat-card>
+        <mat-card-title </mat-card-title>
+        <mat-card-content>
         </mat-card-content>
-      </mat-card>
+      </mat-card>-->
     </div>
   </div>
 </div>

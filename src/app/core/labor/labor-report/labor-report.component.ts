@@ -8,7 +8,7 @@ import {LaborHistory} from '../../interfaces/laborHistory.interface';
   styleUrls: ['./labor-report.component.scss']
 })
 export class LaborReportComponent implements OnInit {
-  labors: Array<LaborHistory>;
+  labors: Array<LaborHistory> = [];
   @Input() start_date: string;
   @Input() end_date: string;
   displayedColumns: string[] = ['type', 'male', 'female', 'daily', 'workdone', 'total'];

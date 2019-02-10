@@ -7,11 +7,15 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
 }
 
 .mat-card {
   width: 100%;
+}
+
+h5 {
+  font-weight: 600 !important;
 }
 
 a {

@@ -1,0 +1,20 @@
+<div class="content">
+  <!--TODO: add routes for edit and add-->
+  <!--Diesel-->
+  <h5>Diesel</h5>
+  <div fxLayout="column">
+    <div *ngIf="diesel&&diesel.length>0;else noResource">
+      <mat-card *ngFor="let d of diesel">
+        <app-diesel-item [diesel]="d"></app-diesel-item>
+      </mat-card>
+    </div>
+    <ng-template #noResource>
+      <mat-card><span fxFlex>No details added today.</span></mat-card>
+    </ng-template>
+    <div fxFlex fxFlexAlign="end">
+      <button mat-mini-fab routerLink="../dieseldetails" fragment="add">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

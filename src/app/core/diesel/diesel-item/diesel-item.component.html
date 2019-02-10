@@ -1,0 +1,14 @@
+<div class="layer" fxLayoutGap="10px">
+  <span fxFlex>Vehicle: {{diesel.vehicle_no}}</span>
+  <!--<a role="button" fragment="edit"
+     (click)="deleteLabor(labor)">
+    <mat-icon fxFlexAlign="end">delete</mat-icon>
+  </a>-->
+  <a role="button" routerLink="../dieseldetails" fragment="edit"
+     (click)="coreService.current_diesel.next(diesel)">
+    <mat-icon fxFlexAlign="end">edit</mat-icon>
+  </a>
+</div>
+<div class="layer" fxLayoutGap="10px">
+  <span fxFlex>Litres {{diesel.litres}}</span>
+</div>
