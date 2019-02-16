@@ -11,7 +11,7 @@ export class DieselReportComponent implements OnInit {
   diesel: Array<DieselHistory> = [];
   @Input() start_date: string;
   @Input() end_date: string;
-  displayedColumns: string[] = ['vehicle_no', 'litres', 'comments'];
+  displayedColumns: string[] = ['vehicle_no', 'litres', 'rate', 'comments'];
 
   constructor(private coreService: CoreService) {
   }

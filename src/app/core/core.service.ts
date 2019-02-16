@@ -135,6 +135,7 @@ export class CoreService {
         + '&vehicle_no=' + diesel.vehicle_no
         + '&litres=' + diesel.litres
         + '&comment=' + diesel.comment
+        + '&rate=' + diesel.rate
         , this.httpOptions)
         .subscribe((result: any) => {
           if (result.status_code === 1) {
@@ -152,6 +153,7 @@ export class CoreService {
         + '&litres=' + diesel.litres
         + '&comment=' + diesel.comment
         + '&id=' + diesel.id
+        + '&rate=' + diesel.rate
         , this.httpOptions)
         .subscribe((result: any) => {
           if (result.status_code === 1) {

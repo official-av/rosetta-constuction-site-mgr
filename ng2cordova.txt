@@ -5,7 +5,7 @@ let onDeviceReady = () => {
 document.addEventListener('deviceready', onDeviceReady, false);
 
 step 2: BUILD CODE AND ADD TO WWW OF CORDOVA APP
-ng build --prod --base-href . --output-path ../CordovaMobileApp/www/
+ng build --prod --base-href . --output-path ../RosettaMobileApp/www/
 
 step 3: ADD THIS LINE TO INDEX.HTML
 <script type=”text/javascript” src=”cordova.js”></script>

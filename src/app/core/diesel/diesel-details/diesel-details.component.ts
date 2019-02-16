@@ -36,7 +36,8 @@ export class DieselDetailsComponent implements OnInit, OnDestroy {
     this.dieselForm = new FormGroup({
       vehicle_no: new FormControl(this.diesel.vehicle_no, Validators.required),
       litres: new FormControl(this.diesel.litres, [Validators.required, Validators.min(0)]),
-      comment: new FormControl(this.diesel.comment)
+      comment: new FormControl(this.diesel.comment),
+      rate: new FormControl(this.diesel.rate, Validators.required)
     });
   }
 
@@ -44,6 +45,7 @@ export class DieselDetailsComponent implements OnInit, OnDestroy {
     this.diesel.vehicle_no = this.dieselForm.value.vehicle_no;
     this.diesel.litres = this.dieselForm.value.litres;
     this.diesel.comment = this.dieselForm.value.comment;
+    this.diesel.rate = this.dieselForm.value.rate;
     console.log(this.diesel);
     if (this.mode === 'add') {
       this.coreService.addDiesel(this.diesel)
