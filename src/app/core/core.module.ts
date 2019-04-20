@@ -14,18 +14,20 @@ import {MachineryDetailsComponent} from './machinery/machinery-details/machinery
 import {MaterialComponent} from './material/material.component';
 import {MaterialDetailsComponent} from './material/material-details/material-details.component';
 import {ProgressComponent} from './progress/progress.component';
-import {TaskDetailsComponent} from './progress/task-details/task-details.component';
-import {EditProgressComponent} from './progress/edit-progress/edit-progress.component';
 import {LaborItemComponent} from './labor/labor-item/labor-item.component';
-import { MaterialItemComponent } from './material/material-item/material-item.component';
-import { MachineryItemComponent } from './machinery/machinery-item/machinery-item.component';
-import { AdminComponent } from './admin/admin.component';
-import { LaborReportComponent } from './labor/labor-report/labor-report.component';
-import { HistoryComponent } from './history/history.component';
-import { DieselComponent } from './diesel/diesel.component';
-import { DieselDetailsComponent } from './diesel/diesel-details/diesel-details.component';
-import { DieselItemComponent } from './diesel/diesel-item/diesel-item.component';
-import { DieselReportComponent } from './diesel/diesel-report/diesel-report.component';
+import {MaterialItemComponent} from './material/material-item/material-item.component';
+import {MachineryItemComponent} from './machinery/machinery-item/machinery-item.component';
+import {AdminComponent} from './admin/admin.component';
+import {LaborReportComponent} from './labor/labor-report/labor-report.component';
+import {HistoryComponent} from './history/history.component';
+import {DieselComponent} from './diesel/diesel.component';
+import {DieselDetailsComponent} from './diesel/diesel-details/diesel-details.component';
+import {DieselItemComponent} from './diesel/diesel-item/diesel-item.component';
+import {DieselReportComponent} from './diesel/diesel-report/diesel-report.component';
+import {ProgressReportComponent} from './progress/progress-report/progress-report.component';
+import {ProgressItemComponent} from './progress/progress-item/progress-item.component';
+import {ProgressDetailsComponent} from './progress/progress-details/progress-details.component';
+import {SelectScheduleComponent} from './progress/select-schedule/select-schedule.component';
 
 @NgModule({
   imports: [
@@ -47,8 +49,6 @@ import { DieselReportComponent } from './diesel/diesel-report/diesel-report.comp
     MaterialComponent,
     MaterialDetailsComponent,
     ProgressComponent,
-    TaskDetailsComponent,
-    EditProgressComponent,
     LaborItemComponent,
     MaterialItemComponent,
     MachineryItemComponent,
@@ -58,9 +58,13 @@ import { DieselReportComponent } from './diesel/diesel-report/diesel-report.comp
     DieselComponent,
     DieselDetailsComponent,
     DieselItemComponent,
-    DieselReportComponent],
+    DieselReportComponent,
+    ProgressReportComponent,
+    ProgressItemComponent,
+    ProgressDetailsComponent,
+    SelectScheduleComponent],
   providers: [CoreService],
-  entryComponents: [EditProgressComponent]
+  entryComponents: [SelectScheduleComponent]
 })
 
 export class CoreModule {

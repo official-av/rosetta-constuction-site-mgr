@@ -12,6 +12,7 @@ import {
   MatListModule,
   MatNativeDateModule,
   MatRadioModule,
+  MatSelectModule,
   MatSidenavModule,
   MatSlideToggleModule,
   MatTableModule,
@@ -37,7 +38,7 @@ import {
     MatGridListModule,
     MatListModule,
     MatTableModule,
-    MatExpansionModule
+    MatSelectModule
   ],
   exports: [
     MatSidenavModule,
@@ -57,7 +58,7 @@ import {
     MatGridListModule,
     MatListModule,
     MatTableModule,
-    MatExpansionModule
+    MatSelectModule
   ]
 })
 

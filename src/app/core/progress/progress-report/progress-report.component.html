@@ -1,0 +1,60 @@
+<div>
+  <!--<h6>Progress</h6>-->
+  <div *ngIf="progress.length>0;else noData">
+    <ng-container *ngFor="let obj of progress">
+      <ng-container *ngIf="obj.details.length>0">
+        <span>{{obj.date| date}}</span>
+        <div class="table-container mat-elevation-z1">
+          <table mat-table [dataSource]="obj.details" class="custom-table">
+            <!-- Item ID Column -->
+            <ng-container matColumnDef="item_id">
+              <th mat-header-cell *matHeaderCellDef> Item ID</th>
+              <td mat-cell *matCellDef="let element"> {{element.schedule_id}} </td>
+            </ng-container>
+            <!-- Item Column -->
+            <ng-container matColumnDef="item">
+              <th mat-header-cell *matHeaderCellDef> Item</th>
+              <td mat-cell *matCellDef="let element"> {{coreService.schedules.get(element.schedule_id).item}} </td>
+            </ng-container>
+
+            <!-- Task Column -->
+            <ng-container matColumnDef="task">
+              <th mat-header-cell *matHeaderCellDef> Task</th>
+              <td mat-cell *matCellDef="let element"> {{coreService.schedules.get(element.schedule_id).task}} </td>
+            </ng-container>
+
+            <!-- Quantity Column -->
+            <ng-container matColumnDef="quantity" sticky>
+              <th mat-header-cell *matHeaderCellDef> Quantity</th>
+              <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+            </ng-container>
+
+            <!-- Exp. Progress Column -->
+            <ng-container matColumnDef="expected_progress">
+              <th mat-header-cell *matHeaderCellDef> Exp. Progress</th>
+              <td mat-cell *matCellDef="let element"> {{element.expected_progress}} </td>
+            </ng-container>
+
+            <!-- Actual. Progress Column -->
+            <ng-container matColumnDef="actual_progress">
+              <th mat-header-cell *matHeaderCellDef> Actual. Progress</th>
+              <td mat-cell *matCellDef="let element"> {{element.actual_progress}} </td>
+            </ng-container>
+
+            <!-- Comments Column -->
+            <ng-container matColumnDef="comments">
+              <th mat-header-cell *matHeaderCellDef> Comments</th>
+              <td mat-cell *matCellDef="let element"> {{element.comments}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+  <ng-template #noData>
+    <span>No details found.</span>
+  </ng-template>
+</div>

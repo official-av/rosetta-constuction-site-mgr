@@ -12,7 +12,7 @@ export class LaborComponent implements OnInit {
   labors: Array<Labor2> = [];
 
   constructor(public coreService: CoreService) {
-  }
+8  }
 
   ngOnInit() {
     this.getLabor();

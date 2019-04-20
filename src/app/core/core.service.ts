@@ -4,20 +4,24 @@ import {environment} from '../../environments/environment';
 import {BehaviorSubject} from 'rxjs';
 import {Machinery} from './models/machinery.model';
 import {Material} from './models/material.model';
-import {Task} from './models/task.model';
 import {Report} from './models/report.model';
 import {Labor2} from './models/newlabor.model';
 import {LaborHistory} from './interfaces/laborHistory.interface';
 import {Diesel} from './models/diesel.model';
 import {DieselHistory} from './interfaces/dieselHistory.interface';
+import {Progress} from './models/progress.model';
+import {ProgressHistory} from './interfaces/progressHistory.interface';
+import {Item} from './models/item.model';
 
 @Injectable()
 export class CoreService {
   site_id = 1;
+  schedules: Map<number, Item>;
   current_labor = new BehaviorSubject(new Labor2());
   current_diesel = new BehaviorSubject(new Diesel());
   current_machine = new BehaviorSubject(new Machinery());
   current_material = new BehaviorSubject(new Material());
+  current_progress = new BehaviorSubject(new Progress());
   // current_task = new BehaviorSubject(new task());
   httpOptions = {
     headers: new HttpHeaders({
@@ -26,6 +30,8 @@ export class CoreService {
   };
 
   constructor(private http: HttpClient) {
+    /*this.fetchSchedules()
+      .then(result => this.schedules = result);*/
   }
 
   /*Labor calls*/
@@ -261,19 +267,28 @@ export class CoreService {
   }
 
   /*Item Calls*/
-  /*fetchSchedules(): Promise<Array<Item>> {
+  fetchSchedules(): Promise<Map<number, Item>> {
     return new Promise((resolve, reject) => {
       this.http.get(environment.api_url + '/get-schedule?site_id=' + this.site_id
         , this.httpOptions)
         .subscribe((result: any) => {
           if (result.status_code === 1) {
-            resolve(result.schedule_info);
+            const obj = result.item_info;
+            const map = new Map<number, Item>();
+            for (const key in obj) {
+              const itemArr: Array<Item> = obj[key];
+              itemArr.forEach(m => {
+                map.set(m.id, m);
+              });
+            }
+            resolve(map);
+            console.log(map);
           }
         }, error => reject(error));
     });
   }
 
-  addSchedules(sch: Item) {
+  /*addSchedules(sch: Item) {
     return new Promise((resolve, reject) => {
       this.http.get(environment.api_url
         + '/insert-schedule?site_id=' + this.site_id
@@ -454,28 +469,80 @@ export class CoreService {
       return (obj2);
     }*/
 
-  /*Task Calls*/
-  getProgress(): Promise<Array<Task>> {
+  /*Progress Calls*/
+  getProgress(): Promise<Array<Progress>> {
     return new Promise((resolve, reject) => {
       this.http.get(environment.api_url + '/get-progress?site_id=' + this.site_id
         , this.httpOptions)
         .subscribe((result: any) => {
           if (result.status_code === 1) {
-            resolve(result.progress);
+            console.log(result);
+            const obj = result.progress_info[0].details;
+            resolve(obj);
           }
         }, error => reject(error));
     });
   }
 
-  editProgress(id: number, actual_progress: number) {
+  addProgress(progress: Progress) {
     return new Promise((resolve, reject) => {
       this.http.get(environment.api_url
-        + '/edit-progress?id=' + id
-        + '&actual_progress=' + actual_progress
+        + '/add-progress?site_id=' + this.site_id
+        + '&schedule_id=' + progress.schedule_id
+        + '&quantity=' + progress.quantity
+        + '&comments=' + progress.comments
         , this.httpOptions)
         .subscribe((result: any) => {
           if (result.status_code === 1) {
             resolve(result.message);
+          }
+        }, error => reject(error));
+    });
+  }
+
+  editProgress(progress: Progress) {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url
+        + '/edit-progress?site_id=' + this.site_id
+        + '&schedule_id=' + progress.schedule_id
+        + '&quantity=' + progress.quantity
+        + '&comments=' + progress.comments
+        + '&id=' + progress.id
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            resolve(result.message);
+          }
+        }, error => reject(error));
+    });
+  }
+
+  deleteProgress(id: number) {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url
+        + '/delete-progress?site_id=' + this.site_id
+        + '&id=' + id
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            resolve(result.message);
+          }
+        }, error => reject(error));
+    });
+  }
+
+  getProgressReport(start_date: string, end_date: string): Promise<Array<ProgressHistory>> {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url + '/get-progress-report'
+        + '?site_id=' + this.site_id
+        + '&start_date=' + start_date
+        + '&end_date=' + end_date
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            const obj: Array<ProgressHistory> = result.progress_info;
+            console.log(obj);
+            resolve(obj);
           }
         }, error => reject(error));
     });

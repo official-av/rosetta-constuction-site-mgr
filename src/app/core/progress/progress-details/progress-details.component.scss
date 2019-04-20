@@ -1,9 +1,13 @@
-@import "../../variables";
+@import "../../../variables";
 
 .content {
-  button {
-    margin: 10px 20px;
+  .custom-btn {
+    color: white;
     background-color: $primary;
+  }
+
+  .back-btn {
+    margin-bottom: 10px;
   }
 
   padding-top: 30px;
@@ -13,6 +17,7 @@
   }
 
   mat-card {
+
     width: 95% !important;
 
     .icon {
@@ -31,5 +36,15 @@
 .layer {
   span {
     font-size: 16px;
+  }
+}
+
+.details {
+  margin: auto;
+  padding: 5px;
+  max-width: 40%;
+
+  mat-form-field {
+    width: 50% !important;
   }
 }

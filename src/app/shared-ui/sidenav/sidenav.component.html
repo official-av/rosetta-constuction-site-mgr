@@ -11,6 +11,13 @@
     <mat-icon>face</mat-icon>
     <span class="nav-caption">Admin</span>
   </a>
+  <!--<a mat-list-item [routerLink]="'progress'" [routerLinkActive]="'active'"
+     [routerLinkActiveOptions]="{'exact':'true'}"
+     (click)="closeSidenav()">
+    <mat-icon>playlist_add_check
+    </mat-icon>
+    <span class="nav-caption">Progress</span>
+  </a>-->
   <!--<a *ngIf="authService.isAuthenticated()" mat-list-item routerLink="profile" [routerLinkActive]="'active'"
      [routerLinkActiveOptions]="{'exact':'true'}"
      (click)="closeSidenav()">-->
@@ -28,7 +35,7 @@
     <mat-icon>verified_user</mat-icon>
     <span class="nav-caption">Register</span>
   </a>-->
-  <!--<a mat-list-item routerLink="labor" (click)="closeSidenav()" [routerLinkActive]="'active'"
+  <a mat-list-item routerLink="labor" (click)="closeSidenav()" [routerLinkActive]="'active'"
      [routerLinkActiveOptions]="{'exact':'true'}">
     <mat-icon>person</mat-icon>
     <span class="nav-caption">Labor</span>
@@ -37,7 +44,12 @@
      [routerLinkActiveOptions]="{'exact':'true'}">
     <mat-icon>opacity</mat-icon>
     <span class="nav-caption">Diesel</span>
-  </a>-->
+  </a>
+  <a mat-list-item routerLink="progress" (click)="closeSidenav()" [routerLinkActive]="'active'"
+     [routerLinkActiveOptions]="{'exact':'true'}">
+    <mat-icon>schedule</mat-icon>
+    <span class="nav-caption">Progress</span>
+  </a>
   <!--<a mat-list-item routerLink="machinery" (click)="closeSidenav()" [routerLinkActive]="'active'"
      [routerLinkActiveOptions]="{'exact':'true'}">
     <mat-icon>local_shipping</mat-icon>
@@ -47,11 +59,6 @@
      [routerLinkActiveOptions]="{'exact':'true'}">
     <mat-icon>gavel</mat-icon>
     <span class="nav-caption">Materials</span>
-  </a>
-  <a mat-list-item routerLink="progress" (click)="closeSidenav()" [routerLinkActive]="'active'"
-     [routerLinkActiveOptions]="{'exact':'true'}">
-    <mat-icon>schedule</mat-icon>
-    <span class="nav-caption">Progress</span>
   </a>
   <a mat-list-item routerLink="report" (click)="closeSidenav()" [routerLinkActive]="'active'"
      [routerLinkActiveOptions]="{'exact':'true'}">

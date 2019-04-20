@@ -1,0 +1,28 @@
+.table-container {
+  /*max-height: 55vh !important;*/
+  overflow: auto;
+  margin-bottom: 20px !important;
+
+  .custom-table {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.mat-table-sticky:first-child {
+  border-right: 1px solid #e0e0e0;
+}
+
+.mat-cell, .mat-header-cell {
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+th.mat-header-cell {
+  padding: 5px !important;
+  min-width: 10vw !important;
+}
+
+td.mat-cell {
+  padding: 5px !important;
+}

@@ -1,27 +1,18 @@
 <div class="content">
   <h5>Progress</h5>
   <div fxLayout="column">
-    <mat-accordion *ngIf="tasks&&tasks.length>0;else noResource">
-      <mat-expansion-panel *ngFor="let task of tasks" ngClass.lt-md="custom-panel">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{task.task}}
-          </mat-panel-title>
-          <mat-panel-description>
-            <span>
-            Progress {{task.actual_progress| number : '1.1'}}/{{task.expected_progress| number : '1.1'}} (actual/expected)
-            </span>
-            <button ngClass.lt-md="pl-0" mat-icon-button
-                    (click)="modalService.openDialog({id:task.id,progress:task.actual_progress})">
-              <mat-icon fxFlexAlign="end">edit</mat-icon>
-            </button>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <app-task-details *ngFor="let item of task.items" [item]="item"></app-task-details>
-      </mat-expansion-panel>
-    </mat-accordion>
+    <div *ngIf="progress&&progress.length>0;else noResource">
+      <mat-card *ngFor="let p of progress">
+        <app-progress-item [progress]="p"></app-progress-item>
+      </mat-card>
+    </div>
     <ng-template #noResource>
-      <mat-card><span fxFlex>No Tasks available</span></mat-card>
+      <mat-card><span fxFlex>No Progress added today.</span></mat-card>
     </ng-template>
+    <div fxFlex fxFlexAlign="end">
+      <button mat-mini-fab (click)="modalService.openScheduleDialog('add')">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {MatDialog} from '@angular/material';
-import {EditProgressComponent} from './progress/edit-progress/edit-progress.component';
 import {HistoryComponent} from './history/history.component';
+import {SelectScheduleComponent} from './progress/select-schedule/select-schedule.component';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +11,9 @@ export class ModalService {
   constructor(public dialog: MatDialog) {
   }
 
-  openDialog(obj: { id: number, progress: number }): void {
-    const dialogRef = this.dialog.open(EditProgressComponent, {
-      data: {id: obj.id, progress: obj.progress}
+  openScheduleDialog(mode: string): void {
+    const dialogRef = this.dialog.open(SelectScheduleComponent, {
+      data: {mode: mode}
     });
 
     dialogRef.afterClosed().subscribe(result => {

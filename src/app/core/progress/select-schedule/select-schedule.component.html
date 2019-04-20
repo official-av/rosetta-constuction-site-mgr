@@ -1,0 +1,15 @@
+<div class="content">
+  <h5>Add Progress</h5>
+  <mat-card class="resource">
+    <mat-card-content fxLayout="column">
+      <mat-form-field>
+        <mat-select placeholder="Select Schedule" [(value)]="schedule_key">
+          <mat-option *ngFor="let item of items;let i=index" [value]="i+1">
+            {{i + 1}}: {{item}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button type="submit" (click)="onSubmit()" mat-raised-button class="custom-btn">Go</button>
+    </mat-card-content>
+  </mat-card>
+</div>

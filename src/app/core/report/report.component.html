@@ -26,6 +26,17 @@
           </mat-expansion-panel-header>
           <app-diesel-report [start_date]="start_date" [end_date]="end_date"></app-diesel-report>
         </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Progress
+            </mat-panel-title>
+            <mat-panel-description *ngIf="mode==='history'">
+              {{start_date}} till {{end_date}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-progress-report [start_date]="start_date" [end_date]="end_date"></app-progress-report>
+        </mat-expansion-panel>
       </mat-accordion>
       <!--<mat-card>
         <mat-card-title </mat-card-title>

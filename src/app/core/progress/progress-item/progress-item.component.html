@@ -1,0 +1,23 @@
+<div class="layer" fxLayoutGap="10px">
+  <span fxFlex><strong>#{{progress.id}}</strong> | Last Updated: {{progress.last_updated|date}}</span>
+  <!--<a role="button" fragment="edit"
+     (click)="deleteLabor(labor)">
+    <mat-icon fxFlexAlign="end">delete</mat-icon>
+  </a>-->
+  <a role="button" routerLink="../progressdetails" fragment="edit"
+     (click)="coreService.current_progress.next(progress)">
+    <mat-icon fxFlexAlign="end">edit</mat-icon>
+  </a>
+</div>
+<div class="layer" fxLayoutGap="10px">
+  <span fxFlex>ID {{progress.schedule_id}}: {{associatedItem.item}}</span> <span
+  fxFlexAlign="end">Task: {{associatedItem.task}}</span>
+</div>
+<div class="layer" fxlayoutgap="10px">
+  <span fxFlex>Qty:  {{progress.quantity}}</span>
+  <span fxFlexAlign="end">Comments:  {{progress.comments}}</span>
+</div>
+<div class="layer" fxlayoutgap="10px">
+  <span fxFlex>Actual Progress: {{progress.actual_progress}}</span>
+  <span fxFlexAlign="end">Exp. Progress: {{progress.expected_progress}}</span>
+</div>

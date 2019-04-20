@@ -1,0 +1,46 @@
+<div class="content">
+  <!--Labor-->
+  <div fxLayoutGap="10px">
+    <h5 fxFlex>{{mode | titlecase}} Progress</h5>
+    <button class="back-btn" fxFlexAlign="end" mat-icon-button (click)="cancel()">
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+  </div>
+  <mat-card class="resource">
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit()" [formGroup]="progressForm" *ngIf="progress" fxLayout="column"
+            fxLayoutAlign="center">
+        <mat-form-field>
+          <mat-select placeholder="Select Task" formControlName="schedule_id">
+            <mat-option *ngFor="let item of items" [value]="item.id">
+              {{item.id}}: {{item.task}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput formControlName="quantity" placeholder="Quantity">
+        </mat-form-field>
+
+        <mat-form-field>
+          <textarea matInput formControlName="comments" placeholder="Comments"></textarea>
+        </mat-form-field>
+        <div fxLayout="row">
+          <div fxFlex>
+            <button type="button" class="custom-btn" mat-mini-fab>
+              <mat-icon>attach_file</mat-icon>
+            </button>
+          </div>
+          <div fxLayoutGap="5px">
+            <button type="submit" mat-raised-button class="custom-btn">Save</button>
+            <button type="button" mat-mini-fab [disabled]="mode==='add'" class="custom-btn"
+                    (click)="deleteProgress()">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+

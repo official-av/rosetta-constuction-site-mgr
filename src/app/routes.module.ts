@@ -13,6 +13,7 @@ import {AdminComponent} from './core/admin/admin.component';
 import {HistoryComponent} from './core/history/history.component';
 import {DieselComponent} from './core/diesel/diesel.component';
 import {DieselDetailsComponent} from './core/diesel/diesel-details/diesel-details.component';
+import {ProgressDetailsComponent} from './core/progress/progress-details/progress-details.component';
 
 const routes: Routes = [
   {path: '', component: WelcomeComponent},
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: 'materials', component: MaterialComponent},
   {path: 'materialdetails', component: MaterialDetailsComponent},
   {path: 'progress', component: ProgressComponent},
+  {path: 'progressdetails', component: ProgressDetailsComponent},
   // {path: 'scheduledetails', component: ScheduleDetailsComponent},
   {path: 'report', component: ReportComponent},
   {path: 'admin', component: AdminComponent},
