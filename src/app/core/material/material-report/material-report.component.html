@@ -1,0 +1,54 @@
+<div>
+  <!--<h6>Progress</h6>-->
+  <div *ngIf="material.length>0;else noData">
+    <ng-container *ngFor="let obj of material">
+      <ng-container *ngIf="obj.details.length>0">
+        <span>{{obj.date| date}}</span>
+        <div class="table-container mat-elevation-z1">
+          <table mat-table [dataSource]="obj.details" class="custom-table">
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Name</th>
+              <td mat-cell *matCellDef="let element"> {{element.MaterialName}} </td>
+            </ng-container>
+            <!-- Type Column -->
+            <ng-container matColumnDef="type">
+              <th mat-header-cell *matHeaderCellDef> Type</th>
+              <td mat-cell *matCellDef="let element"> {{element.MaterialType}} </td>
+            </ng-container>
+
+            <!-- Quantity Column -->
+            <ng-container matColumnDef="quantity" sticky>
+              <th mat-header-cell *matHeaderCellDef> Quantity</th>
+              <td mat-cell *matCellDef="let element"> {{element.MaterialQuantity}} {{element.MaterialUnits}} </td>
+            </ng-container>
+
+            <!-- Inventory Column -->
+            <ng-container matColumnDef="inventory">
+              <th mat-header-cell *matHeaderCellDef> Inventory Status</th>
+              <td mat-cell *matCellDef="let element"> {{element.InventoryType}} </td>
+            </ng-container>
+
+            <!-- Actual. Progress Column -->
+            <ng-container matColumnDef="transaction_date">
+              <th mat-header-cell *matHeaderCellDef> Transaction Date</th>
+              <td mat-cell *matCellDef="let element"> {{element.TransactionDate|date}} </td>
+            </ng-container>
+
+            <!-- Comments Column -->
+            <ng-container matColumnDef="comments">
+              <th mat-header-cell *matHeaderCellDef> Comments</th>
+              <td mat-cell *matCellDef="let element"> {{element.Comments}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+  <ng-template #noData>
+    <span>No details found.</span>
+  </ng-template>
+</div>

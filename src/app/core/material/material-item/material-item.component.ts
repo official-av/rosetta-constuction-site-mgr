@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Material} from '../../models/material.model';
 import {CoreService} from '../../core.service';
 
@@ -9,21 +9,11 @@ import {CoreService} from '../../core.service';
 })
 export class MaterialItemComponent implements OnInit {
   @Input() material: Material;
-  @Output() onDelete = new EventEmitter();
 
   constructor(public coreService: CoreService) {
   }
 
   ngOnInit() {
-  }
-
-  deleteMaterial(mat: Material) {
-    if (confirm('Are you sure?')) {
-      this.coreService.deleteMaterial(mat)
-        .then(result => console.log(result))
-        .then(() => this.onDelete.emit())
-        .catch(error => console.log(error));
-    }
   }
 
 }

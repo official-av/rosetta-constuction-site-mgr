@@ -4,7 +4,6 @@ import {environment} from '../../environments/environment';
 import {BehaviorSubject} from 'rxjs';
 import {Machinery} from './models/machinery.model';
 import {Material} from './models/material.model';
-import {Report} from './models/report.model';
 import {Labor2} from './models/newlabor.model';
 import {LaborHistory} from './interfaces/laborHistory.interface';
 import {Diesel} from './models/diesel.model';
@@ -12,6 +11,7 @@ import {DieselHistory} from './interfaces/dieselHistory.interface';
 import {Progress} from './models/progress.model';
 import {ProgressHistory} from './interfaces/progressHistory.interface';
 import {Item} from './models/item.model';
+import {MaterialHistory} from './interfaces/materialHistory.interface';
 
 @Injectable()
 export class CoreService {
@@ -345,11 +345,13 @@ export class CoreService {
   /*Material Calls*/
   fetchMaterials(): Promise<Array<Material>> {
     return new Promise((resolve, reject) => {
-      this.http.get(environment.api_url + '/get-material?site_id=' + this.site_id
+      this.http.get(environment.api_url
+        + '/material?trans_ID=GET'
+        + '&site_id=' + this.site_id
         , this.httpOptions)
         .subscribe((result: any) => {
           if (result.status_code === 1) {
-            resolve(result.material_info);
+            resolve(result.material_info[0].details);
           }
         }, error => reject(error));
     });
@@ -358,12 +360,14 @@ export class CoreService {
   addMaterials(mat: Material) {
     return new Promise((resolve, reject) => {
       this.http.get(environment.api_url
-        + '/insert-material?site_id=' + this.site_id
-        + '&cost=' + mat.cost
-        + '&quantity=' + mat.quantity
-        + '&in_vs_out=' + mat.in_vs_out
-        + '&images=' + mat.images
-        + '&type=' + mat.type
+        + '/material?trans_ID=ADD'
+        + '&site_id=' + this.site_id
+        + '&material_name=' + mat.MaterialName
+        + '&material_type=' + mat.MaterialType
+        + '&inventory_type=' + mat.InventoryType
+        + '&material_quantity=' + mat.MaterialQuantity
+        + '&material_units=' + mat.MaterialUnits
+        + '&comment=' + mat.Comments
         , this.httpOptions)
         .subscribe((result: any) => {
           if (result.status_code === 1) {
@@ -376,13 +380,15 @@ export class CoreService {
   editMaterials(mat: Material) {
     return new Promise((resolve, reject) => {
       this.http.get(environment.api_url
-        + '/edit-material?site_id=' + this.site_id
+        + '/material?trans_ID=EDIT'
+        + '&site_id=' + this.site_id
+        + '&material_name=' + mat.MaterialName
+        + '&material_type=' + mat.MaterialType
+        + '&inventory_type=' + mat.InventoryType
+        + '&material_quantity=' + mat.MaterialQuantity
+        + '&material_units=' + mat.MaterialUnits
+        + '&comment=' + mat.Comments
         + '&id=' + mat.id
-        + '&cost=' + mat.cost
-        + '&quantity=' + mat.quantity
-        + '&in_vs_out=' + mat.in_vs_out
-        + '&images=' + mat.images
-        + '&type=' + mat.type
         , this.httpOptions)
         .subscribe((result: any) => {
           if (result.status_code === 1) {
@@ -394,9 +400,10 @@ export class CoreService {
 
   deleteMaterial(mat: Material) {
     return new Promise((resolve, reject) => {
-      this.http.get(environment.api_url + '/delete-material'
-        + '?id=' + mat.id
+      this.http.get(environment.api_url
+        + '/material?trans_ID=DELETE'
         + '&site_id=' + this.site_id
+        + '&id=' + mat.id
         , this.httpOptions)
         .subscribe((result: any) => {
           if (result.status_code === 1) {
@@ -406,7 +413,25 @@ export class CoreService {
     });
   }
 
-  // Report Calls
+  getMaterialReport(start_date: string, end_date: string): Promise<Array<MaterialHistory>> {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.api_url
+        + '/material?trans_ID=REPORT'
+        + '&site_id=' + this.site_id
+        + '&start_date=' + start_date
+        + '&end_date=' + end_date
+        , this.httpOptions)
+        .subscribe((result: any) => {
+          if (result.status_code === 1) {
+            const obj: Array<MaterialHistory> = result.material_info;
+            console.log(obj);
+            resolve(obj);
+          }
+        }, error => reject(error));
+    });
+  }
+
+  /*// Report Calls
   getReport(): Promise<Report> {
     return new Promise((resolve, reject) => {
       this.http.get(environment.api_url + '/daily-report?site_id=' + this.site_id
@@ -417,7 +442,7 @@ export class CoreService {
           }
         }, error => reject(error));
     });
-  }
+  }*/
 
   /*  async getItems(): Promise<any> {
       let labors = await this.fetchLabor()

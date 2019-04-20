@@ -1,15 +1,18 @@
 export class Material {
-  site_id?: string;
+  SiteID?: string;
   id?: number;
-  type: string;
-  quantity: number;
-  in_vs_out?: number;
-  cost: number;
+  MaterialName: string;
+  MaterialType?: string;
+  InventoryType: 'O' | 'I';
+  MaterialQuantity: number;
+  MaterialUnits: number;
+  TransactionDate: string;
   date: string;
-  comments?: number;
-  images?: string;
+  Comments?: number;
+
+  // images?: string;
 
   constructor() {
-    this.in_vs_out = -1;
+    this.InventoryType = 'O';
   }
 }

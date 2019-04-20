@@ -1,5 +1,5 @@
 <div class="content">
-  <!--Machinery-->
+  <!--Material-->
   <div fxLayoutGap="10px">
     <h5 fxFlex>{{mode | titlecase}} Material</h5>
     <button class="back-btn" fxFlexAlign="end" mat-icon-button (click)="cancel()">
@@ -10,30 +10,44 @@
     <mat-card-content>
       <form (ngSubmit)="onSubmit()" [formGroup]="matForm" *ngIf="mat" fxLayout="column" fxLayoutAlign="center">
         <mat-form-field>
-          <input matInput formControlName="type" placeholder="Type">
+          <input matInput formControlName="MaterialName" placeholder="Name">
         </mat-form-field>
         <mat-form-field>
-          <input matInput formControlName="cost" placeholder="Cost">
+          <input matInput formControlName="MaterialType" placeholder="Type">
         </mat-form-field>
         <mat-form-field>
-          <input matInput formControlName="quantity" placeholder="Quantity">
+          <input matInput formControlName="MaterialQuantity" placeholder="Quantity">
         </mat-form-field>
         <mat-form-field>
+          <input matInput formControlName="MaterialUnits" placeholder="Unit">
+        </mat-form-field>
+        <!--<mat-form-field>
           <input matInput placeholder="Date" [matDatepicker]="picker" formControlName="date">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker [startAt]="defDate" #picker></mat-datepicker>
-        </mat-form-field>
+        </mat-form-field>-->
         <mat-form-field>
-          <textarea matInput placeholder="Images" formControlName="images"></textarea>
+          <textarea matInput placeholder="Comments" formControlName="Comments"></textarea>
         </mat-form-field>
         <div class="mb-3" style="color:grey;" fxLayoutGap="5px">
           <span>Material Used</span>
-          <mat-slide-toggle [checked]="consumed" (change)="toggleConsumed()"></mat-slide-toggle>
+          <mat-slide-toggle [checked]="!consumed" (change)="toggleConsumed()"></mat-slide-toggle>
           <span>Material Arrived</span>
         </div>
-        <button type="submit" mat-raised-button [ngClass]="{'custom-btn':matForm.valid}"
-                [disabled]="!matForm.valid">Done
-        </button>
+        <div fxLayout="row">
+          <div fxFlex>
+            <button type="button" class="custom-btn" mat-mini-fab>
+              <mat-icon>attach_file</mat-icon>
+            </button>
+          </div>
+          <div fxLayoutGap="5px">
+            <button type="submit" mat-raised-button class="custom-btn">Save</button>
+            <button type="button" mat-mini-fab [disabled]="mode==='add'" class="custom-btn"
+                    (click)="deleteMaterial()">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
       </form>
     </mat-card-content>
   </mat-card>

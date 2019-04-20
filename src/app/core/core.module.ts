@@ -28,6 +28,7 @@ import {ProgressReportComponent} from './progress/progress-report/progress-repor
 import {ProgressItemComponent} from './progress/progress-item/progress-item.component';
 import {ProgressDetailsComponent} from './progress/progress-details/progress-details.component';
 import {SelectScheduleComponent} from './progress/select-schedule/select-schedule.component';
+import { MaterialReportComponent } from './material/material-report/material-report.component';
 
 @NgModule({
   imports: [
@@ -62,7 +63,8 @@ import {SelectScheduleComponent} from './progress/select-schedule/select-schedul
     ProgressReportComponent,
     ProgressItemComponent,
     ProgressDetailsComponent,
-    SelectScheduleComponent],
+    SelectScheduleComponent,
+    MaterialReportComponent],
   providers: [CoreService],
   entryComponents: [SelectScheduleComponent]
 })

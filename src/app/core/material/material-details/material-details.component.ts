@@ -16,7 +16,7 @@ export class MaterialDetailsComponent implements OnInit, OnDestroy {
   mat: Material;
   subs: Subscription;
   matForm: FormGroup;
-  defDate: Date;
+  // defDate: Date;
   consumed: boolean;
 
   /* TODO: add image component*/
@@ -24,13 +24,15 @@ export class MaterialDetailsComponent implements OnInit, OnDestroy {
               private router: Router,
               private route: ActivatedRoute,
               private datepipe: DatePipe) {
-    this.defDate = new Date();
+    // this.defDate = new Date();
     this.mode = this.route.snapshot.fragment;
     if (this.mode === 'add') {
       this.mat = new Material();
+      this.consumed = this.mat.InventoryType === 'O';
     } else {
       this.subs = this.coreService.current_material.subscribe((mat: Material) => {
         this.mat = mat;
+        this.consumed = this.mat.InventoryType === 'O';
       });
     }
   }
@@ -38,13 +40,12 @@ export class MaterialDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.matForm = new FormGroup({
-      type: new FormControl(this.mat.type, Validators.required),
-      cost: new FormControl(this.mat.cost, Validators.required),
-      date: new FormControl(this.mat.date, Validators.required),
-      quantity: new FormControl(this.mat.quantity, Validators.required),
-      images: new FormControl(this.mat.images)
+      MaterialType: new FormControl(this.mat.MaterialType, Validators.required),
+      MaterialName: new FormControl(this.mat.MaterialName, Validators.required),
+      MaterialQuantity: new FormControl(this.mat.MaterialQuantity, Validators.required),
+      MaterialUnits: new FormControl(this.mat.MaterialUnits, Validators.required),
+      Comments: new FormControl(this.mat.Comments, Validators.required)
     });
-    this.consumed = this.mat.in_vs_out === 1;
   }
 
   cancel() {
@@ -52,14 +53,13 @@ export class MaterialDetailsComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.mat.cost = this.matForm.value.cost;
-    this.mat.type = this.matForm.value.type;
-    this.mat.quantity = this.matForm.value.quantity;
-    this.mat.in_vs_out = this.matForm.value.in_vs_out;
-    this.mat.date = this.datepipe.transform(this.matForm.value.start_date, 'yyyy-MM-dd');
-    this.mat.images = this.matForm.value.images;
-    this.mat.in_vs_out = this.consumed ? 1 : -1;
-    console.log(this.mat);
+    this.mat.MaterialType = this.matForm.value.MaterialType;
+    this.mat.MaterialName = this.matForm.value.MaterialName;
+    this.mat.MaterialQuantity = this.matForm.value.MaterialQuantity;
+    this.mat.MaterialUnits = this.matForm.value.MaterialUnits;
+    /*this.mat.date = this.datepipe.transform(this.matForm.value.start_date, 'yyyy-MM-dd');*/
+    this.mat.InventoryType = this.consumed ? 'O' : 'I';
+    this.mat.Comments = this.matForm.value.Comments;
     if (this.mode === 'add') {
       this.coreService.addMaterials(this.mat)
         .then(result => console.log(result))
@@ -79,7 +79,15 @@ export class MaterialDetailsComponent implements OnInit, OnDestroy {
 
   toggleConsumed() {
     this.consumed = !this.consumed;
-    console.log(this.consumed);
+  }
+
+  deleteMaterial() {
+    if (confirm('Are you sure?')) {
+      this.coreService.deleteMaterial(this.mat)
+        .then(result => console.log(result))
+        .then(() => this.cancel())
+        .catch(error => console.log(error));
+    }
   }
 
   ngOnDestroy() {
